@@ -15,7 +15,7 @@ const About = () => {
           <h3 className="underline-item"></h3>
         </div>
         <div className="header-item">
-          <Link to="/products">Login</Link>
+          <Link to="/login">Login</Link>
           <h3 className="underline-item"></h3>
         </div>
       </nav>

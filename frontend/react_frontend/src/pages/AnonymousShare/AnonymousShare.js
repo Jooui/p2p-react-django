@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-
+import { FileCopyOutlined } from '@material-ui/icons';
 import './AnonymousShare.css'
 
 
@@ -16,6 +16,11 @@ const AnonymousShare = () => {
   return (
     <div className="anonShare-container">
       <h1>Anonymous Share</h1>
+      <div className="join-code">
+        <label>Room Code: </label>
+        <span className="code">17914371944</span>
+        <FileCopyOutlined/>
+      </div>
       <section className="dropzone-container">
         <div {...getRootProps()} className="dropzone">
           <input {...getInputProps()} />
