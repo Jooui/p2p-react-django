@@ -1,18 +1,18 @@
 import './Profile.css'
 import { BackupOutlined, Wallpaper } from '@material-ui/icons';
-
+import useUser from 'hooks/useUser'
 
 
 const Profile = () => {
-
+  const { isAuthenticated, logout } = useUser()
   return (
     <div className="profile-container">
       <section className="profile-left">
         <h1 className="profile-username-title">Jrevertvila</h1>
-        <div class="image-upload">
-          <label for="file-input">
-            <img src="https://media.licdn.com/dms/image/C4D03AQHgTg56kGYcZQ/profile-displayphoto-shrink_800_800/0/1587724107266?e=1620259200&v=beta&t=Jio2Kl4xsclbx6c9bOReeqSrBiUJQQa7uTv8YSVkKNk" alt="profile" className="profile-img"/>
-            <Wallpaper/>
+        <div className="image-upload">
+          <label htmlFor="file-input">
+            <img src="https://media.licdn.com/dms/image/C4D03AQHgTg56kGYcZQ/profile-displayphoto-shrink_800_800/0/1587724107266?e=1620259200&v=beta&t=Jio2Kl4xsclbx6c9bOReeqSrBiUJQQa7uTv8YSVkKNk" alt="profile" className="profile-img" />
+            <Wallpaper />
           </label>
 
           <input id="file-input" type="file" />
@@ -35,9 +35,12 @@ const Profile = () => {
             <span>870.6GB</span>
           </div>
         </section>
-        <div className="send-friend-request-btn">
-          Friend request
-        </div>
+        {
+          isAuthenticated ?
+            <div className="logout-btn" onClick={() => logout()}> Log out</div>
+            : <div className="send-friend-request-btn">Friend request</div>
+        }
+
       </section>
       <section className="profile-right">
         <div className="profile-right__input-container">

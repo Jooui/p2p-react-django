@@ -11,10 +11,10 @@ services:
     networks:
       - app_network
     restart: on-failure
-    # depends_on:
-    #   - django
+    depends_on:
+      - peerjs
     working_dir: /app
-    command: bash -c "npm install && npm start"
+    command: bash -c "npm start"
 
   peerjs:
     container_name: peerjs_server

@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import './Header.css';
 
-const About = () => {
+import useUser from 'hooks/useUser'
+
+const Header = () => {
+  const { isAuthenticated } = useUser()
+  console.log("aaaadasdasdsadasd")
+  console.log(isAuthenticated)
   return (
     <header className="main-header">
       <h1>Peer-App</h1>
@@ -15,7 +20,9 @@ const About = () => {
           <h3 className="underline-item"></h3>
         </div>
         <div className="header-item">
-          <Link to="/login">Login</Link>
+          {isAuthenticated ?
+            <Link to="/profile">Profile</Link>
+            : <Link to="/login">Login</Link>}
           <h3 className="underline-item"></h3>
         </div>
       </nav>
@@ -24,4 +31,4 @@ const About = () => {
   )
 }
 
-export default About
+export default Header
