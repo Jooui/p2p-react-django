@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { FileCopyOutlined } from '@material-ui/icons';
+import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './AnonymousShare.css'
 
 
@@ -33,6 +33,7 @@ const AnonymousShare = () => {
       </section>
       <section className="anonShare-container--bottom">
           <section className="added-files">
+            <div className="share-btn">Share {<ArrowForwardIos/>}</div>
             <h3>Added files</h3>
           </section>
           <section className="joined-users">

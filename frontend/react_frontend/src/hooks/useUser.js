@@ -15,7 +15,7 @@ export default function useUser() {
   }, [setJwt])
 
   return {
-    isAuthenticated: true,
+    isAuthenticated: Boolean(jwt),
     login,
     logout
   }
