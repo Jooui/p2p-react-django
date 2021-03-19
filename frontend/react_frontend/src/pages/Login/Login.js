@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login({email, password})
-    console.log(email, password)
+    console.log(email, password, "login")
   }
 
   return (

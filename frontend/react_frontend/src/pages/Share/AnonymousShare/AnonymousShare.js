@@ -4,7 +4,18 @@ import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './AnonymousShare.css'
 import Peer from 'peerjs';
 import { v4 as uuidv4 } from 'uuid';
-import generateID from 'utils/generateID'
+
+let generateID = (length) => {
+  let date = Date.now() + "";
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result + "-" + date.substr(date.length - 6);
+}
+
 
 const AnonymousShare = () => {
   const [peer] = useState(new Peer(generateID(4), { host: 'localhost', port: 9000, path: '/myapp' }))
