@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Login.css'
 import { GitHub } from '@material-ui/icons';
 import useUser from 'hooks/useUser'
 import { Redirect } from 'react-router-dom';
+import usePeer from '../../hooks/usePeer'
 
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { isAuthenticated, login } = useUser();
+  const {peer} = usePeer();
+  console.log(peer.id);
 
   if ( isAuthenticated ) return <Redirect to='/'/> // User cannot enter to login if it's already authenticated
 

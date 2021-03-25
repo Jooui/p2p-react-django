@@ -2,14 +2,16 @@ import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './AnonymousShare.css'
-import Peer from 'peerjs';
-import { v4 as uuidv4 } from 'uuid';
-import generateID from 'utils/generateID'
+import usePeer from '../../hooks/usePeer'
+// import Peer from 'peerjs';
+// import generateID from 'utils/generateID'
 
 const AnonymousShare = () => {
-  const [peer] = useState(new Peer(generateID(4), { host: 'localhost', port: 9000, path: '/myapp' }))
+  // const [peer] = useState(new Peer(generateID(4), { host: 'localhost', port: 9000, path: '/myapp' }))
 
+  const {peer} = usePeer();
 
+  console.log(peer.id);
   const onDrop = useCallback(acceptedFiles => {
     // Do something with the files
   }, [])
@@ -21,8 +23,8 @@ const AnonymousShare = () => {
     <div className="anonShare-container">
       <h1>Anonymous Share</h1>
       <div className="join-code">
-        <label>Room Code: </label>
-        <span className="code">{peer.id}</span>
+        <label>Room Code: {peer.id}</label>
+        <span className="code"></span>
         <FileCopyOutlined />
       </div>
       <section className="dropzone-container">

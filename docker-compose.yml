@@ -1,26 +1,28 @@
 version: "3"
 
 services:
-  # react:
-  #   container_name: react_container
-  #   image: node:10.15
-  #   volumes:
-  #     - ./frontend/react_frontend:/app
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - app_network
-  #   restart: on-failure
-  #   depends_on:
-  #     - peerjs
-  #   working_dir: /app
-  #   command: bash -c "npm start"
+  react:
+    container_name: react_container
+    image: node:10.15
+    volumes:
+      - ./frontend/react_frontend:/app
+    ports:
+      - "3000:3000"
+    networks:
+      - app_network
+    restart: on-failure
+    depends_on:
+      - peerjs
+    working_dir: /app
+    command: bash -c "npm i && npm start"
 
   peerjs:
     container_name: peerjs_server
     image: peerjs/peerjs-server
     ports:
       - "9000:9000"
+    networks:
+      - app_network
 
   # django:
   #   build: ./backend/django/
