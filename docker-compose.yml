@@ -24,28 +24,28 @@ services:
     networks:
       - app_network
 
-  # django:
-  #   build: ./backend/django/
-  #   container_name: django_container
-  #   volumes:
-  #     - ./backend/django:/app
-  #   ports:
-  #     - "8000:8000"
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - app_network
-  #   command: "python3 manage.py runserver 0.0.0.0:8000"
+  django:
+    build: ./backend/django/
+    container_name: django_container
+    volumes:
+      - ./backend/django:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - app_network
+    command: "python3 manage.py runserver 0.0.0.0:8000"
 
-  # postgres:
-  #   image: postgres:latest
-  #   container_name: postgres_container
-  #   ports:
-  #     - "5432:5432"
-  #   environment:
-  #     POSTGRES_HOST_AUTH_METHOD: trust
-  #   networks:
-  #     - app_network
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks:
+      - app_network
 
 
 networks:

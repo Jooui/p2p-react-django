@@ -11,14 +11,14 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const { isAuthenticated, login } = useUser();
   const {peer} = usePeer();
-  console.log(peer.id);
+  // console.log(peer.id);
 
   if ( isAuthenticated ) return <Redirect to='/'/> // User cannot enter to login if it's already authenticated
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login({email, password})
-    console.log(email, password, "login")
+    // console.log(email, password, "login")
   }
 
   return (

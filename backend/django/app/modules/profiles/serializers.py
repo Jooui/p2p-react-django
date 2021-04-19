@@ -37,3 +37,11 @@ class ProfileSerializer(serializers.ModelSerializer):
         followee = instance
 
         return follower.is_following(followee)
+
+
+class ProfilesSerializer(serializers.ModelSerializer):
+    users = ProfileSerializer(many=True)
+
+    class Meta:
+        model = Profile
+        fields = ('__all__')

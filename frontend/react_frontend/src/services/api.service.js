@@ -2,7 +2,7 @@ import createHttp from './http'
 
 // const http = createHttp(false); // unsecured
 
-let http =createHttp(false);
+let http = createHttp(false);
 
 const ApiService = {
 
@@ -18,17 +18,13 @@ const ApiService = {
   },
 
   get(resource, slug = "") {
-    console.log(slug);
     return http.get(`${resource}/${slug}`).catch(error => {
       throw new Error(`[RVD] ApiService ${error}`);
     });
   },
 
   post(resource, params) {
-    console.log( params);
-    // JSON.parse(params)
     return http.post(`${resource}`, params)
-    // return Vue.axios.post(`${resource}`, params);
   },
 
   update(resource, slug, params) {

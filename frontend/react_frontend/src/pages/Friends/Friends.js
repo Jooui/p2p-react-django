@@ -25,6 +25,7 @@ let renderPage = (page) => {
 }
 
 const Friends = () => {
+  console.log("ENTRA FRIENDS");
   const [page, setPage] = useState("friends");
 
   useEffect(() => {

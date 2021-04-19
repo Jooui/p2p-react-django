@@ -4,9 +4,9 @@ import './Header.css';
 import useUser from 'hooks/useUser'
 
 const Header = () => {
-  const { isAuthenticated } = useUser()
-  console.log("aaaadasdasdsadasd")
-  console.log(isAuthenticated)
+  const { isAuthenticated,currentUser } = useUser()
+  // console.log("aaaadasdasdsadasd")
+  // console.log(isAuthenticated)
   return (
     <header className="main-header">
       <h1>Peer-App</h1>
@@ -21,7 +21,7 @@ const Header = () => {
         </div>
         <div className="header-item">
           {isAuthenticated ?
-            <Link to="/profile">Profile</Link>
+            <Link to={"/profile/"+(currentUser ? currentUser.username : '')}>Profile</Link>
             : <Link to="/login">Login</Link>}
           <h3 className="underline-item"></h3>
         </div>
