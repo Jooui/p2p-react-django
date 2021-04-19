@@ -94,48 +94,48 @@ const RoomOwner = () => {
 
   /* Working WEBRTC PEERJS FUNCTIONS */
 
-// SENDER
-  let loadWebrtc = () => {
-    const peer = new Peer('sender', { host: 'localhost', port: 9000, path: '/' })
+  // SENDER
+  // let loadWebrtc = () => {
+  //   const peer = new Peer('sender', { host: 'localhost', port: 9000, path: '/' })
 
-            const conn = peer.connect('receiver')
+  //   const conn = peer.connect('receiver')
 
-            // conn.on('open', () => {
-            //     // conn.send('hi!')
-            // })
+  //   // conn.on('open', () => {
+  //   //     // conn.send('hi!')
+  //   // })
 
-            const BYTES_PER_CHUNK = 40000;
-            let file;
-            let currentChunk;
-            let fileInput = $('input[type=file]');
-            let fileReader = new FileReader();
+  //   const BYTES_PER_CHUNK = 40000;
+  //   let file;
+  //   let currentChunk;
+  //   let fileInput = $('input[type=file]');
+  //   let fileReader = new FileReader();
 
-            function readNextChunk() {
-                let start = BYTES_PER_CHUNK * currentChunk;
-                let end = Math.min(file.size, start + BYTES_PER_CHUNK);
-                fileReader.readAsArrayBuffer(file.slice(start, end));
-            }
+  //   function readNextChunk() {
+  //     let start = BYTES_PER_CHUNK * currentChunk;
+  //     let end = Math.min(file.size, start + BYTES_PER_CHUNK);
+  //     fileReader.readAsArrayBuffer(file.slice(start, end));
+  //   }
 
-            fileReader.onload = function () {
-                conn.send(fileReader.result);
-                currentChunk++;
+  //   fileReader.onload = function () {
+  //     conn.send(fileReader.result);
+  //     currentChunk++;
 
-                if (BYTES_PER_CHUNK * currentChunk < file.size) {
-                    readNextChunk();
-                }
-            };
+  //     if (BYTES_PER_CHUNK * currentChunk < file.size) {
+  //       readNextChunk();
+  //     }
+  //   };
 
-            fileInput.on('change', function () {
-                file = fileInput[0].files[0];
-                currentChunk = 0;
-                // send some metadata about our file to the receiver
-                conn.send(JSON.stringify({
-                    fileName: file.name,
-                    fileSize: file.size
-                }));
-                readNextChunk();
-            });
-  }
+  //   fileInput.on('change', function () {
+  //     file = fileInput[0].files[0];
+  //     currentChunk = 0;
+  //     // send some metadata about our file to the receiver
+  //     conn.send(JSON.stringify({
+  //       fileName: file.name,
+  //       fileSize: file.size
+  //     }));
+  //     readNextChunk();
+  //   });
+  // }
 
 
 
