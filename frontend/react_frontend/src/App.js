@@ -34,6 +34,7 @@ import UserProfile from "pages/Profile/UserProfile";
 import NotFound from "pages/404/NotFound";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import EditProfile from "pages/Profile/EditProfile";
+import MenuTransfer from "pages/Transfer/Menu/MenuTransfer";
 
 
 
@@ -53,7 +54,7 @@ export default function App() {
 
           <section className="wrapper">
             <Switch>
-              <Route exact path="/"><ShareMenu /></Route>
+              <Route exact path="/"><MenuTransfer /></Route>
               <Route path="/about"><About /></Route>
               <Route path="/login"><Login /></Route>
               <Route path="/myroom"><RoomOwner /></Route>

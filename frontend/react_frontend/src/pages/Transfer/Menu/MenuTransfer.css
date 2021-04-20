@@ -1,0 +1,122 @@
+.menu-transfer-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.500); */
+}
+
+.card-menu-transfer{
+    width: 100%;
+    max-width: 340px;
+    height: 75%;
+    border-radius: 15px;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.700);
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.card-menu-transfer img{
+    /* width: 60%; */
+    height: 175px;
+}
+
+.card-menu-transfer h2{
+    font-size: 22px;
+    margin: 30px 10px 10px 10px;
+}
+
+.card-menu-transfer h3{
+    font-size: 16px;
+    text-align: center;
+    margin: 5px 10px 10px 10px;
+    flex: 1;
+}
+
+.card-menu-transfer .create-room{
+    outline: none;
+    border: none;
+    width: 150px;
+    height: 35px;
+    border: 2px solid #dc2b33;
+    color: #dc2b33;
+    border-radius: 500px;
+    background-color: transparent;
+    font-family: Poppins;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.card-menu-transfer .create-room:hover{
+    box-shadow: 0px 0px 5px rgba(117, 117, 117, 0.308);
+    font-size: 1.03em;
+    color: white;
+    background-color: #dc2b33;
+}
+
+.card-menu-transfer .join-room-container{
+    width: 250px;
+    height: 35px;
+    border: 2px solid #dc2b33;
+    color: #dc2b33;
+    border-radius: 500px;
+    background-color: #dc2b33;
+    font-family: Poppins;
+    font-size: 1em;
+    font-weight: 500;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+}
+
+.join-room-container input{
+    width: 80%;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background-color: white;
+    font-family: Poppins;
+    font-size: 1em;
+    font-weight: 500;
+    border-right: 1px solid #dc2b33;
+    padding: 0px 20px;
+    transition: 0.1s;
+}
+
+.join-room-container input:focus {
+    background-color: transparent;
+    color: white;
+}
+
+.join-room-container input:focus::placeholder {
+    color: white;
+}
+
+.join-room-container a{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: rgb(85, 85, 85);
+    transition: 0.1s;
+}
+
+.join-room-container a:hover{
+    background-color: #dc2b33;
+    color: white;
+    /* border-left: 1px solid #ee9da1; */
+}

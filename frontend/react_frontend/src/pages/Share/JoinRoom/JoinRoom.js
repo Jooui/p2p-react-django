@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-
+// import { Peer } from 'peerjs'
 import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './JoinRoom.css'
 import usePeer from 'hooks/usePeer';
@@ -22,16 +22,16 @@ const JoinRoom = () => {
     const { peer } = usePeer()
     let { room } = useParams();
     const [conn, setConn] = useState(peer.connect(room))
-    const [file, setFile] = useState();
+    // const [file, setFile] = useState();
     const chunkLength = 1000;
 
     // useEffect(() => {
 
     // })
 
-    let sendFile = (file) => {
-        conn.send(file);
-    }
+    // let sendFile = (file) => {
+    //     conn.send(file);
+    // }
 
 
     conn.on('data', (data) => {
@@ -43,90 +43,111 @@ const JoinRoom = () => {
 
     /* WORKING WEBRTC PEERJS */
 
-    //Receiver
+    const BYTES_PER_CHUNK = 40000;
+    let file;
+    let currentChunk;
+    let fileInput = document.getElementById('input-file');
+    let fileReader = new FileReader();
 
-    // let loadWebrtc = () => {
-    //     let bytesReceived2 = 0;
-    //     let uploaded = 0;
-    //     let downloadTimer, uploadTimer;
-    //     let downSpeed = 0
-    //     let upSpeed = 0;
-    //     let lastDownTime = 0;
-    //     let lastUpTime = 0;
+    function readNextChunk() {
+        let start = BYTES_PER_CHUNK * currentChunk;
+        let end = Math.min(file.size, start + BYTES_PER_CHUNK);
+        fileReader.readAsArrayBuffer(file.slice(start, end));
+    }
 
+    fileReader.onload = function () {
+        conn.send(fileReader.result);
+        currentChunk++;
 
+        if (BYTES_PER_CHUNK * currentChunk < file.size) {
+            readNextChunk();
+        }
+    };
 
+    // fileInput.on('change', function () {
+    // file = fileInput[0].files[0];
+    // currentChunk = 0;
+    // // send some metadata about our file to the receiver
+    // conn.send(JSON.stringify({
+    //   fileName: file.name,
+    //   fileSize: file.size
+    // }));
+    // readNextChunk();
+    // });
 
+    let onChangeFile = (fileInput) => {
+        file = fileInput; 
+        currentChunk = 0;
+        // send some metadata about our file to the receiver
+        conn.send(JSON.stringify({
+            fileName: file.name,
+            fileSize: file.size
+        }));
+        readNextChunk();
+    }
 
-    //     let bar = document.getElementById('bar');
-    //     let spanP = document.getElementById('progress')
+    // SENDER
+    // let loadWebrtcSender = () => {
 
-    //     const peer = new Peer('receiver', { host: 'localhost', port: 9000, path: '/' })
+    //     const BYTES_PER_CHUNK = 40000;
+    //     let file;
+    //     let currentChunk;
+    //     let fileInput = document.getElementById('input-file');
+    //     let fileReader = new FileReader();
 
-    //     peer.on('connection', (conn) => {
-    //         conn.on('data', (data) => {
-    //             console.log(data);
-    //         })
+    //     function readNextChunk() {
+    //         let start = BYTES_PER_CHUNK * currentChunk;
+    //         let end = Math.min(file.size, start + BYTES_PER_CHUNK);
+    //         fileReader.readAsArrayBuffer(file.slice(start, end));
+    //     }
 
+    //     fileReader.onload = function () {
+    //         conn.send(fileReader.result);
+    //         currentChunk++;
 
-    //         let incomingFileInfo;
-    //         let incomingFileData;
-    //         let bytesReceived;
-    //         let downloadInProgress = false;
-
-    //         conn.on('data', data => {
-    //             if (downloadInProgress === false) {
-    //                 startDownload(data);
-    //             } else {
-    //                 progressDownload(data);
-    //             }
-    //         });
-
-    //         function startDownload(data) {
-    //             incomingFileInfo = JSON.parse(data.toString());
-    //             incomingFileData = [];
-    //             bytesReceived = 0;
-    //             downloadInProgress = true;
-    //             console.log('incoming file <b>' + incomingFileInfo.fileName + '</b> of ' + incomingFileInfo.fileSize + ' bytes');
+    //         if (BYTES_PER_CHUNK * currentChunk < file.size) {
+    //             readNextChunk();
     //         }
+    //     };
 
-    //         function progressDownload(data) {
-
-    //             var endTime = (new Date()).getTime();
-    //             downSpeed = ((incomingFileInfo.fileSize - bytesReceived2) * 1000) / ((endTime - lastDownTime) * 1024);
-    //             bytesReceived2 = incomingFileInfo.fileSize;
-    //             lastDownTime = endTime;
-
-    //             console.log(downSpeed);
-
-    //             bytesReceived += data.byteLength;
-    //             incomingFileData.push(data);
-    //             console.log('progress: ' + ((bytesReceived / incomingFileInfo.fileSize) * 100).toFixed(2) + '%');
-    //             bar.style.width = ((bytesReceived / incomingFileInfo.fileSize) * 100).toFixed(2) + '%'
-    //             spanP.innerHTML = 'Progress: ' + ((bytesReceived / incomingFileInfo.fileSize) * 100).toFixed(2) + '%'
-    //             if (bytesReceived === incomingFileInfo.fileSize) {
-    //                 endDownload();
-    //             }
-    //         }
-
-    //         function endDownload() {
-    //             downloadInProgress = false;
-    //             let blob = new window.Blob(incomingFileData);
-    //             let anchor = document.createElement('a');
-    //             anchor.href = URL.createObjectURL(blob);
-    //             anchor.download = incomingFileInfo.fileName;
-    //             anchor.textContent = 'XXXXXXX';
-
-    //             if (anchor.click) {
-    //                 anchor.click();
-    //             } else {
-    //                 let evt = document.createEvent('MouseEvents');
-    //                 evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-    //                 anchor.dispatchEvent(evt);
-    //             }
-    //         }
+    //     fileInput.onchange(function () {
+    //         file = fileInput[0].files[0];
+    //         currentChunk = 0;
+    //         // send some metadata about our file to the receiver
+    //         conn.send(JSON.stringify({
+    //             fileName: file.name,
+    //             fileSize: file.size
+    //         }));
+    //         readNextChunk();
     //     })
+
+    //     // fileInput.on('change', function () {
+    //     // file = fileInput[0].files[0];
+    //     // currentChunk = 0;
+    //     // // send some metadata about our file to the receiver
+    //     // conn.send(JSON.stringify({
+    //     //   fileName: file.name,
+    //     //   fileSize: file.size
+    //     // }));
+    //     // readNextChunk();
+    //     // });
+
+    //     let onChangeFile = (file) => {
+
+    //         currentChunk = 0;
+    //         // send some metadata about our file to the receiver
+    //         conn.send(JSON.stringify({
+    //             fileName: file.name,
+    //             fileSize: file.size
+    //         }));
+    //         readNextChunk();
+    //     }
     // }
+
+    // loadWebrtcSender()
+
+
+    
 
 
     return (
@@ -137,7 +158,7 @@ const JoinRoom = () => {
                 <span className="code">{room}</span>
                 <FileCopyOutlined />
             </div>
-            <input type="file" placeholder="Choose a file" id="input-file" onChange={(e) => sendFile(e.target.files[0])} />
+            <input type="file" placeholder="Choose a file" id="input-file" onChange={(e) => onChangeFile(e.target.files[0])} />
             <section className="anonShare-container--bottom">
                 <section className="added-files">
                     <div className="share-btn">Share {<ArrowForwardIos />}</div>
