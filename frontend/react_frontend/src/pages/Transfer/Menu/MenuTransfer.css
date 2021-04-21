@@ -1,4 +1,5 @@
 .menu-transfer-container{
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     display: flex;
@@ -56,6 +57,10 @@
     font-weight: 500;
     cursor: pointer;
     transition: 0.1s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-menu-transfer .create-room:hover{
@@ -119,4 +124,16 @@
     background-color: #dc2b33;
     color: white;
     /* border-left: 1px solid #ee9da1; */
+}
+
+
+@media screen and (max-width:950px){
+    .menu-transfer-container{
+        flex-direction: column;
+        justify-content: unset;
+    }
+
+    .card-menu-transfer{
+        margin-bottom: 20px;
+    }
 }

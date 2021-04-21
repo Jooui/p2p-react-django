@@ -35,6 +35,8 @@ import NotFound from "pages/404/NotFound";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import EditProfile from "pages/Profile/EditProfile";
 import MenuTransfer from "pages/Transfer/Menu/MenuTransfer";
+import Sender from "pages/Transfer/Sender/Sender";
+import Receiver from "pages/Transfer/Receiver/Receiver";
 
 
 
@@ -58,7 +60,10 @@ export default function App() {
               <Route path="/about"><About /></Route>
               <Route path="/login"><Login /></Route>
               <Route path="/myroom"><RoomOwner /></Route>
-              <Route path="/room/:room"><JoinRoom /></Route>
+              <Route path="/receiver"><Receiver /></Route>
+              {/* <Route path="/sender"><Sender /></Route> */}
+              <Route path="/room/:room"><Sender /></Route>
+              {/* <Route path="/room/:room"><JoinRoom /></Route> */}
               <Route path="/profile/:username"><UserProfile /></Route>
               <Route path="/404"><NotFound /></Route>
               <PrivateRoute path="/profile" component={Profile} exact />
