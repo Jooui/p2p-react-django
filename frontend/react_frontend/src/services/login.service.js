@@ -13,7 +13,7 @@ const LoginService = {
     return new Promise((resolve) => {
       ApiService.post("users", params)
         .then(({ data }) => resolve(data))
-        .catch(({ response }) => resolve(response));
+        .catch(({ response }) => resolve(response.data));
     });
   },
 
