@@ -1,6 +1,6 @@
-import useUser from 'hooks/useUser'
-import React, { useEffect, useState } from 'react'
-import {getToken,saveToken,destroyToken} from '../services/jwt.service'
+// import useUser from 'hooks/useUser'
+import React, { useState } from 'react'
+import {getToken} from '../services/jwt.service'
 import LoginService from '../services/login.service'
 
 const Context = React.createContext({})

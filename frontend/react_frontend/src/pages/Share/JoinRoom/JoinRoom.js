@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useParams } from "react-router-dom";
 // import { Peer } from 'peerjs'
 import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './JoinRoom.css'
 import usePeer from 'hooks/usePeer';
 
-function saveToDisk(fileUrl, fileName) {
-    let save = document.createElement('a');
-    save.href = fileUrl;
-    save.target = '_blank';
-    save.download = fileName || fileUrl;
+// function saveToDisk(fileUrl, fileName) {
+//     let save = document.createElement('a');
+//     save.href = fileUrl;
+//     save.target = '_blank';
+//     save.download = fileName || fileUrl;
 
-    let event = document.createEvent('Event');
-    event.initEvent('click', true, true);
+//     let event = document.createEvent('Event');
+//     event.initEvent('click', true, true);
 
-    save.dispatchEvent(event);
-    (window.URL || window.webkitURL).revokeObjectURL(save.href);
-}
+//     save.dispatchEvent(event);
+//     (window.URL || window.webkitURL).revokeObjectURL(save.href);
+// }
 
 const JoinRoom = () => {
     const { peer } = usePeer()
     let { room } = useParams();
-    const [conn, setConn] = useState(peer.connect(room))
+    const [conn] = useState(peer.connect(room))
     // const [file, setFile] = useState();
-    const chunkLength = 1000;
+    // const chunkLength = 1000;
 
     // useEffect(() => {
 
@@ -46,7 +46,7 @@ const JoinRoom = () => {
     const BYTES_PER_CHUNK = 40000;
     let file;
     let currentChunk;
-    let fileInput = document.getElementById('input-file');
+    // let fileInput = document.getElementById('input-file');
     let fileReader = new FileReader();
 
     function readNextChunk() {

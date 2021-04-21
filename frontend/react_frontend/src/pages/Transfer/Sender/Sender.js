@@ -23,6 +23,7 @@ const Sender = () => {
     // AFTER RENDER
     useEffect(() => {
         fileInput = document.getElementById('input-file-sender')
+        console.log(fileInput);
         if (!conn) setConn(peer.connect(room))
         barProgress = document.getElementById('barProgress')
         spanProgress = document.getElementById('spanProgress')

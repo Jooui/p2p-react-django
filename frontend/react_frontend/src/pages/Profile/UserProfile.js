@@ -7,7 +7,7 @@ import { BlockLoading } from 'react-loadingg';
 import useUser from 'hooks/useUser';
 import InfoProfile from './InfoProfile';
 import EditProfile from './EditProfile';
-import { ArrowBackIos, KeyboardBackspace } from '@material-ui/icons';
+import { KeyboardBackspace } from '@material-ui/icons';
 // import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 const UserProfile = () => {
@@ -27,7 +27,7 @@ const UserProfile = () => {
                 window.location.href = '/404'
             }
         })
-    }, [])
+    }, [username])
 
     const followUser = () => {
         if (profile.following) {
@@ -51,20 +51,20 @@ const UserProfile = () => {
                             <img className="image" src={profile.image ? profile.image : 'https://eu.ui-avatars.com/api/?background=random&name='+profile.username} alt={'user profile imagen'} />
                         </div>
                         {
-                            section == 'info' ? 
+                            section === 'info' ? 
                                 <InfoProfile profile={profile}/> :
                                 <EditProfile/>
                         }
                         {
-                            currentUser.username == profile.username ?
-                                (section == 'info' ? <button className="follow-button" onClick={() => setSection('edit')}>Edit Profile</button> :
+                            currentUser.username === profile.username ?
+                                (section === 'info' ? <button className="follow-button" onClick={() => setSection('edit')}>Edit Profile</button> :
                                 <button class="backBtnProfile" onClick={() => setSection('info')}><KeyboardBackspace/></button> ):
                                 (profile.following ?
                                     <button className="follow-button" onClick={followUser}>Following</button> :
                                     <button className="unfollow-btn" onClick={followUser}>Follow</button>)
                         }
                         {
-                            currentUser.username == profile.username ?
+                            currentUser.username === profile.username ?
                             <button class="logoutBtn" onClick={logout}>Logout</button>
                             :null
                         }

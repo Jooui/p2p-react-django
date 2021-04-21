@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+// import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { Send, People, Archive } from '@material-ui/icons';
 import { useState } from "react";
 
 
 
 const InfoProfile = (profile) => {
-    const [myprofile, setMyprofile] = useState(profile.profile)
+    const [myprofile] = useState(profile.profile)
 
     return (
         <>

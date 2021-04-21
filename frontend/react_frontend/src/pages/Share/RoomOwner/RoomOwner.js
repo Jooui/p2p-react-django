@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import React, { useState } from 'react';
+// import { useDropzone } from 'react-dropzone';
 import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './RoomOwner.css';
 import usePeer from '../../../hooks/usePeer';
@@ -9,12 +9,12 @@ import usePeer from '../../../hooks/usePeer';
 const RoomOwner = () => {
 
   let bytesReceived2 = 0;
-  let uploaded = 0;
-  let downloadTimer, uploadTimer;
+  // let uploaded = 0;
+  // let downloadTimer, uploadTimer;
   let downSpeed = 0
-  let upSpeed = 0;
+  // let upSpeed = 0;
   let lastDownTime = 0;
-  let lastUpTime = 0;
+  // let lastUpTime = 0;
 
   let incomingFileInfo;
   let incomingFileData;
@@ -23,14 +23,14 @@ const RoomOwner = () => {
 
   let bar = document.getElementById('bar_progress');
   console.log(bar);
-  let spanP = document.getElementById('progress')
+  // let spanP = document.getElementById('progress')
 
 
 
   const { peer } = usePeer();
   const [clients, setClients] = useState([]);
-  const [file, setFile] = useState();
-  const chunkLength = 1000;
+  // const [file, setFile] = useState();
+  // const chunkLength = 1000;
 
   console.log(peer.id);
 

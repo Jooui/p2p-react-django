@@ -3,7 +3,6 @@ import './Login.css'
 import { GitHub } from '@material-ui/icons';
 import useUser from 'hooks/useUser'
 import { Redirect } from 'react-router-dom';
-import usePeer from '../../hooks/usePeer'
 import { Snackbar } from '@material-ui/core';
 
 
@@ -14,25 +13,24 @@ const Login = () => {
   const [section, setSection] = useState('login');
   const [errorMsg, setErrorMsg] = useState('Login error! Try Again')
   const { isAuthenticated, login, register } = useUser();
-  const { peer } = usePeer();
 
   const [toastr, setToastr] = useState(false);
 
 
-  let handleOpenToastr = () => () => {
-    setToastr(true);
-  };
+  // let handleOpenToastr = () => () => {
+  //   setToastr(true);
+  // };
 
-  let handleCloseToastr = () => {
-    setToastr(false);
-  };
+  // let handleCloseToastr = () => {
+  //   setToastr(false);
+  // };
 
   if (isAuthenticated) return <Redirect to='/' /> // User cannot enter to login if it's already authenticated
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login({ email, password }).then((res) => {
-      if (res == false) {
+      if (res === false) {
         console.log("entra if");
         setToastr(true);
         setErrorMsg('Login error! Try Again')
@@ -43,7 +41,7 @@ const Login = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     register({ username, email, password }).then((res) => {
-      if (res == false) {
+      if (res === false) {
         console.log("entra if");
         setToastr(true);
         setErrorMsg('Register error! Try Again')
@@ -92,7 +90,7 @@ const Login = () => {
         open={toastr}
         onClose={() => setToastr(false)}
         message={errorMsg}
-        key={"bottom" + "left"}
+        // key={"bottom" + "left"}
       ></Snackbar>
 
     </div >

@@ -1,5 +1,5 @@
 import './Profile.css'
-import { BackupOutlined, Wallpaper } from '@material-ui/icons';
+import { Wallpaper } from '@material-ui/icons';
 import useUser from 'hooks/useUser'
 
 

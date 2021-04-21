@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import BackgroundSlider from 'react-background-slider'
 import Header from './components/layout/Header'
@@ -6,7 +6,7 @@ import PrivateRoute from './components/router/PrivateRoute'
 import About from "./pages/About";
 // Import Home from "./pages/Home";
 // import AnonymousShare from "./pages/AnonymousShare/AnonymousShare";
-import ShareMenu from "./pages/Share/ShareMenu/ShareMenu";
+// import ShareMenu from "./pages/Share/ShareMenu/ShareMenu";
 
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
@@ -29,11 +29,11 @@ import useUser from './hooks/useUser'
 import { UserContextProvider } from './context/UserContext';
 import { PeerContext } from './context/PeerContext';
 import RoomOwner from "pages/Share/RoomOwner/RoomOwner";
-import JoinRoom from "pages/Share/JoinRoom/JoinRoom";
+// import JoinRoom from "pages/Share/JoinRoom/JoinRoom";
 import UserProfile from "pages/Profile/UserProfile";
 import NotFound from "pages/404/NotFound";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import EditProfile from "pages/Profile/EditProfile";
+// import EditProfile from "pages/Profile/EditProfile";
 import MenuTransfer from "pages/Transfer/Menu/MenuTransfer";
 import Sender from "pages/Transfer/Sender/Sender";
 import Receiver from "pages/Transfer/Receiver/Receiver";
@@ -41,7 +41,7 @@ import Receiver from "pages/Transfer/Receiver/Receiver";
 
 
 export default function App() {
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   return (
     <PeerContext>
       <UserContextProvider>

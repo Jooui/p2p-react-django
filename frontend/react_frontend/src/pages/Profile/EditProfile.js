@@ -1,11 +1,11 @@
 import './EditProfile.css'
-import { useEffect, useState } from 'react';
-import { BlockLoading } from 'react-loadingg';
+// import { useState } from 'react';
+// import { BlockLoading } from 'react-loadingg';
 
 
 const EditProfile = () => {
 
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
 
     return (

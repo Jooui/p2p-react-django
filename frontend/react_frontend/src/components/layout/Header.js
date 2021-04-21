@@ -13,11 +13,11 @@ const Header = () => {
       <nav>
         <div className="header-item">
           <Link to="/">Home</Link>
-          <h3 className="underline-item"></h3>
+          <div className="underline-item"></div>
         </div>
         <div className="header-item">
           <Link to="/about">About</Link>
-          <h3 className="underline-item"></h3>
+          <div className="underline-item"></div>
         </div>
         <div className="header-item">
           {isAuthenticated && currentUser ?
@@ -25,7 +25,7 @@ const Header = () => {
           <Link to={"/profile/"+currentUser.username}>Profile</Link> :
             <Link to={"/profile/"}>Profile</Link>
             : <Link to="/login">Login</Link>}
-          <h3 className="underline-item"></h3>
+          <div className="underline-item"></div>
         </div>
       </nav>
 

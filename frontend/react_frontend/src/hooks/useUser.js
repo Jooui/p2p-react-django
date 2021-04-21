@@ -1,10 +1,10 @@
-import { useContext, useCallback, useState } from 'react';
+import { useContext, useCallback } from 'react';
 import Context from 'context/UserContext';
 import LoginService from '../services/login.service'
 import { saveToken, destroyToken } from 'services/jwt.service';
 
 export default function useUser() {
-  const { jwt, setJwt } = useContext(Context)
+  const { setJwt } = useContext(Context)
   const { user, setUser } = useContext(Context)
 
 
@@ -21,7 +21,7 @@ export default function useUser() {
         return true
       }
     })
-  }, [setJwt])
+  }, [setJwt, setUser])
 
   const register = useCallback(({ username, email, password }) => {
     return LoginService.register({user:{username,email,password}}).then((request) => {
@@ -35,14 +35,14 @@ export default function useUser() {
         return true
       }
     })
-  }, [setJwt])
+  }, [setJwt, setUser])
 
   const logout = useCallback(() => {
     setJwt(null);
     setUser(null);
     destroyToken();
     window.location.href = '/'
-  }, [setJwt])
+  }, [setJwt, setUser])
 
   return {
     isAuthenticated: Boolean(user),
