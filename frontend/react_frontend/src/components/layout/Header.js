@@ -20,8 +20,10 @@ const Header = () => {
           <h3 className="underline-item"></h3>
         </div>
         <div className="header-item">
-          {isAuthenticated ?
-            <Link to={"/profile/"+(currentUser ? currentUser.username : '')}>Profile</Link>
+          {isAuthenticated && currentUser ?
+          currentUser ? 
+          <Link to={"/profile/"+currentUser.username}>Profile</Link> :
+            <Link to={"/profile/"}>Profile</Link>
             : <Link to="/login">Login</Link>}
           <h3 className="underline-item"></h3>
         </div>
