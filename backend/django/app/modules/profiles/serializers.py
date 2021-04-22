@@ -9,10 +9,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     image = serializers.CharField(allow_blank=True, required=False) #para que funcione el UPDATE de la imagen
     # image = serializers.SerializerMethodField()
     following = serializers.SerializerMethodField()
+    followersCount = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
-        fields = ('username', 'bio', 'image', 'following',)
+        fields = ('username', 'bio', 'image', 'following','followersCount',)
         read_only_fields = ('username',)
 
     def get_image(self, obj):
@@ -37,6 +38,17 @@ class ProfileSerializer(serializers.ModelSerializer):
         followee = instance
 
         return follower.is_following(followee)
+
+    def get_followersCount(self, instance):
+        request = self.context.get('request', None)
+        followee = instance
+        res = [item for item in Profile.objects.all() if followee.is_followed_by(item)]
+
+        # me = request.user.profile
+        # if me.is_followed_by(followee):
+        #     res.append(followee)
+
+        return len(res)
 
 
 class ProfilesSerializer(serializers.ModelSerializer):

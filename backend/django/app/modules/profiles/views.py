@@ -39,7 +39,25 @@ class ProfilesRetrieveAPIView(ListAPIView):
         queryset = self.queryset.filter(user__username__startswith=username)
         serializer = ProfileSerializer(queryset, many=True)
         return Response(serializer.data)
-    
+
+
+
+class FollowersAPIView(ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    def list(self, request):
+        queryset = self.get_queryset()
+
+        serializer = self.serializer_class(
+            queryset, context={'request': request}, many=True
+        )
+
+        res = [item for item in serializer.data if item.get('following', False)] 
+        return Response(res)
+
+
 
 class ProfileFollowAPIView(APIView):
     permission_classes = (IsAuthenticated,)
