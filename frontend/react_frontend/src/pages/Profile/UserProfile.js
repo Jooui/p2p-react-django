@@ -65,7 +65,7 @@ const UserProfile = () => {
                         }
                         {
                             currentUser.username === profile.username ?
-                            <button class="logoutBtn" onClick={logout}>Logout</button>
+                            <button className="logoutBtn" onClick={logout}>Logout</button>
                             :null
                         }
 

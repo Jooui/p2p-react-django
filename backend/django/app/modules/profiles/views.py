@@ -1,6 +1,6 @@
 from rest_framework import serializers, status
 from rest_framework.exceptions import NotFound
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -31,25 +31,15 @@ class ProfileRetrieveAPIView(RetrieveAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class ProfilesRetrieveAPIView(RetrieveAPIView):
-    permission_classes = (AllowAny,)
+class ProfilesRetrieveAPIView(ListAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Profile.objects.select_related('user')
-    serializer_class = ProfileSerializer
 
-    def retrieve(self, request, username, *args, **kwargs):
-        try:
-            profile = self.queryset.filter(user__username__startswith=username)
-            print("manolo")
-            print(profile)
-        except Profile.DoesNotExist:
-            raise NotFound('A profile with this username does not exist.')
-
-        serializer = self.serializer_class(profile, context={
-            'request': request
-        })
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
+    def list(self, request, username, *args, **kwargs):
+        queryset = self.queryset.filter(user__username__startswith=username)
+        serializer = ProfileSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
 
 class ProfileFollowAPIView(APIView):
     permission_classes = (IsAuthenticated,)

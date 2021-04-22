@@ -11,6 +11,7 @@ const Sender = () => {
     const { peer } = usePeer()
     let { room } = useParams();
     const [conn, setConn] = useState(null)
+    const [isSended, setIsSended] = useState(false)
     // const [file, setFile] = useState()
 
 
@@ -54,11 +55,15 @@ const Sender = () => {
     let handleStart = () => {
         currentChunk = 0;
         // send some metadata about our file to the receiver
-        conn.send(JSON.stringify({
-            fileName: file.name,
-            fileSize: file.size
-        }));
-        readNextChunk();
+        if ( !isSended ){
+            setIsSended(true)
+            conn.send(JSON.stringify({
+                fileName: file.name,
+                fileSize: file.size
+            }));
+            readNextChunk();
+        }
+        
     }
 
 
