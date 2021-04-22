@@ -34,6 +34,8 @@ const Login = () => {
         console.log("entra if");
         setToastr(true);
         setErrorMsg('Login error! Try Again')
+      }else{
+          window.location.reload()
       }
     })
   }
@@ -45,6 +47,8 @@ const Login = () => {
         console.log("entra if");
         setToastr(true);
         setErrorMsg('Register error! Try Again')
+      }else{
+          window.location.reload()
       }
     })
     // console.log(email, password, "login")
