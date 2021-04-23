@@ -4,7 +4,8 @@ import './Header.css';
 import useUser from 'hooks/useUser'
 
 const Header = () => {
-  const { isAuthenticated,currentUser } = useUser()
+  const { isAuthenticated,currentUser,socketIo } = useUser()
+  console.log(socketIo)
   // console.log("aaaadasdasdsadasd")
   // console.log(isAuthenticated)
   return (

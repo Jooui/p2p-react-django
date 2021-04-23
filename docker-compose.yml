@@ -37,6 +37,22 @@ services:
       - app_network
     command: "python3 manage.py runserver 0.0.0.0:8000"
 
+  nodejs:
+    container_name: nodejs_container
+    image: node:10.15
+    volumes:
+      - ./backend/node_express:/app
+    ports:
+      - "4200:4200"
+    networks:
+      - app_network
+    restart: on-failure
+    depends_on:
+      - peerjs
+      - django
+    working_dir: /app
+    command: bash -c "npm i && npm start"
+
   postgres:
     image: postgres:latest
     container_name: postgres_container

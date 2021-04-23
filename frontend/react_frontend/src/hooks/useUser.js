@@ -6,7 +6,7 @@ import { saveToken, destroyToken } from 'services/jwt.service';
 export default function useUser() {
   const { setJwt } = useContext(Context)
   const { user, setUser } = useContext(Context)
-
+  const { socketIo } = useContext(Context)
 
 
   const login = useCallback(({ email, password }) => {
@@ -49,7 +49,8 @@ export default function useUser() {
     login,
     register,
     logout,
-    currentUser: user ? user.user : null
+    currentUser: user ? user.user : null,
+    socketIo
   }
 }
 
