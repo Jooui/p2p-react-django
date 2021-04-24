@@ -4,10 +4,8 @@ import './Header.css';
 import useUser from 'hooks/useUser'
 
 const Header = () => {
-  const { isAuthenticated,currentUser,socketIo } = useUser()
-  console.log(socketIo)
-  // console.log("aaaadasdasdsadasd")
-  // console.log(isAuthenticated)
+  const { isAuthenticated, currentUser, socketIo } = useUser()
+
   return (
     <header className="main-header">
       <h1>Peer-App</h1>
@@ -22,19 +20,18 @@ const Header = () => {
         </div>
         <div className="header-item">
           {isAuthenticated && currentUser ?
-          currentUser ? 
-          <Link to={"/profile/"+currentUser.username}>Profile</Link> :
-            <Link to={"/profile/"}>Profile</Link>
+            currentUser ?
+              <Link to={"/profile/" + currentUser.username}>Profile</Link> :
+              <Link to={"/profile/"}>Profile</Link>
             : <Link to="/login">Login</Link>}
           <div className="underline-item"></div>
         </div>
 
         <div className="header-item">
           {isAuthenticated && currentUser ?
-          currentUser ? 
-          <Link to={"/admin"}>Panel Admin</Link> :
-            <Link to={"/admin"}>Panel Admin</Link>
-            : null}
+            currentUser.is_admin ?
+              <Link to={"/admin"}>Panel Admin</Link> :
+              null : null}
           <div className="underline-item"></div>
         </div>
       </nav>

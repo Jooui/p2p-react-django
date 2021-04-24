@@ -110,8 +110,8 @@ const PanelAdminSwitch = () => {
 
 
 const SwitchToPanelAdmin = () => {
-  const { isAuthenticated, logout } = useUser()
-  if ( isAuthenticated ) {
+  const { isAuthenticated, logout, currentUser } = useUser()
+  if ( isAuthenticated && currentUser.is_admin ) {
     localStorage.setItem('isPanelAdmin',true)
     window.location.reload()
   } else {
