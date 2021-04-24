@@ -28,6 +28,15 @@ const Header = () => {
             : <Link to="/login">Login</Link>}
           <div className="underline-item"></div>
         </div>
+
+        <div className="header-item">
+          {isAuthenticated && currentUser ?
+          currentUser ? 
+          <Link to={"/admin"}>Panel Admin</Link> :
+            <Link to={"/admin"}>Panel Admin</Link>
+            : null}
+          <div className="underline-item"></div>
+        </div>
       </nav>
 
     </header>

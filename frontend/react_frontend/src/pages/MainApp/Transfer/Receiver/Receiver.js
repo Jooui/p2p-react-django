@@ -1,6 +1,6 @@
 import './Receiver.css'
 import React, { useEffect, useState } from 'react';
-import usePeer from '../../../hooks/usePeer';
+import usePeer from '../../../../hooks/usePeer';
 import { FileCopyOutlined } from '@material-ui/icons';
 
 let barProgress;

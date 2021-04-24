@@ -1,0 +1,9 @@
+#demo-customized-select {
+    padding-right: 24px;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.MuiMenu-paper {
+    top: 60px !important;
+}

@@ -26,6 +26,14 @@ const ProfileService = {
     });
   },
 
+  getFollowingProfiles(username) {
+    return new Promise((resolve) => {
+      ApiService.get("profile/following")
+        .then(({ data }) => resolve(data))
+        .catch(({ response }) => resolve(response));
+    });
+  },
+
   follow(username) {
     return new Promise((resolve) => {
       ApiService.auth()

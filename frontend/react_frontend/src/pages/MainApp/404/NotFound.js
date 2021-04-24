@@ -1,6 +1,6 @@
 import './NotFound.css'
 // import '../../assets/images/notfound.jpg'
-import nofFoundImg from '../../assets/images/notfound.jpg'
+import nofFoundImg from '../../../assets/images/notfound.jpg'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 const NotFound = () => {

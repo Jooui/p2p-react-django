@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { useDropzone } from 'react-dropzone';
 import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './RoomOwner.css';
-import usePeer from '../../../hooks/usePeer';
+import usePeer from '../../../../hooks/usePeer';
 // import copyToClipboard from 'utils/copyToClipboard';
 
 

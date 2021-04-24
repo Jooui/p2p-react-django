@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './AnonymousShare.css'
-import usePeer from '../../hooks/usePeer'
+import usePeer from '../../../hooks/usePeer'
 // import Peer from 'peerjs';
 // import generateID from 'utils/generateID'
 

@@ -1,6 +1,6 @@
 import "./MenuTransfer.css"
-import svgUpload from '../../../assets/images/menu_choose/upload.svg'
-import svgDownload from '../../../assets/images/menu_choose/download.svg'
+import svgUpload from '../../../../assets/images/menu_choose/upload.svg'
+import svgDownload from '../../../../assets/images/menu_choose/download.svg'
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
 import { ArrowForwardIos } from "@material-ui/icons"
 import { useState } from "react"

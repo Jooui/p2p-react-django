@@ -42,7 +42,7 @@ class ProfilesRetrieveAPIView(ListAPIView):
 
 
 
-class FollowersAPIView(ListAPIView):
+class ProfilesFollowingAPIView(ListAPIView):
     permission_classes = (IsAuthenticated,)
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
