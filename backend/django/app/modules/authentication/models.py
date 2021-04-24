@@ -47,7 +47,7 @@ class UserManager(BaseUserManager):
 
       user = self.create_user(username, email, password)
       user.is_superuser = True
-      user.is_staff = True
+      user.is_admin = True
       user.save()
 
       return user
@@ -73,10 +73,10 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     # but we can still analyze the data.
     is_active = models.BooleanField(default=True)
 
-    # The `is_staff` flag is expected by Django to determine who can and cannot
+    # The `is_admin` flag is expected by Django to determine who can and cannot
     # log into the Django admin site. For most users, this flag will always be
     # falsed.
-    is_staff = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
 
     # More fields required by Django when specifying a custom user model.
 

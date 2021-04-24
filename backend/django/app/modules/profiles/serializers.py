@@ -5,15 +5,17 @@ from .models import Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
+    admin  = serializers.BooleanField(source='user.is_admin')
     bio = serializers.CharField(allow_blank=True, required=False)
     image = serializers.CharField(allow_blank=True, required=False) #para que funcione el UPDATE de la imagen
     # image = serializers.SerializerMethodField()
+    # admin = serializers.BooleanField(required=False)
     following = serializers.SerializerMethodField()
     followersCount = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
-        fields = ('username', 'bio', 'image', 'following','followersCount',)
+        fields = ('username', 'bio', 'image', 'following','followersCount','admin')
         read_only_fields = ('username',)
 
     def get_image(self, obj):

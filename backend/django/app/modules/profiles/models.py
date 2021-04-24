@@ -13,6 +13,8 @@ class Profile(TimestampedModel):
 
     image = models.TextField(blank=True)
 
+    # admin = models.BooleanField(default=False)
+
     follows = models.ManyToManyField(
         'self',
         related_name='followed_by',
