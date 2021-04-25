@@ -12,11 +12,11 @@ export default function useUser() {
   const { socketIo } = useContext(Context)
 
 
-  // const getFriends = useCallback(() => {
-  //   return ProfileService.getFollowingProfiles().then((data) => {
-  //     setFriends(data)
-  //   })
-  // }, [friends])
+  const refreshFriends = useCallback(() => {
+    ProfileService.getFollowingProfiles().then((data) => {
+      setFriends(data)
+    })
+  }, [friends])
 
 
   const handlePanelAdmin = () => {
@@ -73,6 +73,8 @@ export default function useUser() {
     logout,
     adminPanel, setAdminPanel,
     // getFriends,
+    refreshFriends,
+    friends,
     currentUser: user ? user.user : null,
     socketIo
   }
