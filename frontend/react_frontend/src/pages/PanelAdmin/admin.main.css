@@ -20,6 +20,8 @@
     flex: 1;
     box-sizing: border-box;
     padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
 }
 

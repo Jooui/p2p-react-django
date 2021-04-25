@@ -1,0 +1,16 @@
+.adminUsersPage {
+    flex: 1;
+    padding: 20px 20px 60px 20px;
+}
+/* 
+.MuiDataGrid-viewport .MuiDataGrid-row.Mui-even {
+    background-color: #d7ddf1;
+}
+
+.MuiDataGrid-viewport .Mui-selected {
+    background-color: rgb(135, 148, 167) !important;
+} */
+
+.MuiDataGrid-colCellWrapper {
+    background-color: #d7ddf1 !important;
+}
