@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import BackgroundSlider from 'react-background-slider'
 import Header from './components/MainApp/layout/Header'
 import PrivateRoute from './components/router/PrivateRoute'
-import About from "./pages/MainApp/About";
+import About from "./pages/MainApp/About/About";
 // Import Home from "./pages/Home";
 // import AnonymousShare from "./pages/AnonymousShare/AnonymousShare";
 // import ShareMenu from "./pages/Share/ShareMenu/ShareMenu";
@@ -78,7 +78,7 @@ const PanelAdminSwitch = () => {
       {
         adminPanel === 'true' ? <PanelAdminMain /> :
           <>
-            <BackgroundSlider images={[bg2, bg1, bg4]} duration={30} transition={0.4} />
+            <BackgroundSlider images={[bg1, bg2, bg4]} duration={30} transition={0.4} />
             <main className="app-container">
               <Header />
               <div className="main-container">
