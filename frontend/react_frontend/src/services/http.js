@@ -8,7 +8,6 @@ import JwtService from "./jwt.service";
 export default function createHttp(secured = true) {
   // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
   if (secured) {
-    console.log(JwtService.getToken());
     return axios.create({
       headers: { "Authorization": `Token ${JwtService.getToken()}` },
       baseURL: API_URL

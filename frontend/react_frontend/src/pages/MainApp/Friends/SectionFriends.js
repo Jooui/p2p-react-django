@@ -11,7 +11,6 @@ const SectionFriends = () => {
 
   useEffect(() => {
     ProfileService.getFollowingProfiles().then((data) => {
-      console.log(data);
       setFriends(data)
       setLoaded(true)
     })

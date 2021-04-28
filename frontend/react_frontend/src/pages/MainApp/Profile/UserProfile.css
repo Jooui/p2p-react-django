@@ -21,6 +21,7 @@
     border-radius: 50%;
     overflow: hidden;
     margin-top: -80px;
+    position: relative;
 }
 
 .user-image .image {

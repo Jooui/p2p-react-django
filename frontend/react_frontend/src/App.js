@@ -69,7 +69,6 @@ const LoginSwitch = () => {
 const PanelAdminSwitch = () => {
   const { adminPanel } = useUser()
   const { width } = useWindowDimensions();
-  console.log(adminPanel);
   return (
     <>
       {

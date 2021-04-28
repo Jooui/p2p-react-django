@@ -1,5 +1,5 @@
 // import { useParams } from "react-router-dom/cjs/react-router-dom.min"
-import { Send, People, Archive } from '@material-ui/icons';
+import { Send, People, SupervisorAccount } from '@material-ui/icons';
 import { useState } from "react";
 
 
@@ -21,14 +21,14 @@ const InfoProfile = (profile) => {
                         <span>12GB</span>
                     </article>
                     <article className="stat">
-                        <Archive />
-                        <label>Total Sent:</label>
+                        <SupervisorAccount />
+                        <label>Following:</label>
                         <span>27GB</span>
                     </article>
                     <article className="stat">
                         <People />
                         <label>Followers:</label>
-                        <span>6</span>
+                        <span>{myprofile.followersCount}</span>
                     </article>
                 </div>
             </div>

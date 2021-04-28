@@ -8,11 +8,13 @@ import useUser from 'hooks/useUser';
 import InfoProfile from './InfoProfile';
 import EditProfile from './EditProfile';
 import { KeyboardBackspace } from '@material-ui/icons';
+import SemipolarLoading from 'react-loadingg/lib/SemipolarLoading';
 // import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 const UserProfile = () => {
     const { currentUser, logout } = useUser();
     const [loading, setLoading] = useState(true);
+    const [loadingImg, setLoadingImg] = useState(true);
     const [profile, setProfile] = useState()
     const [section, setSection] = useState('info')
     let { username } = useParams();
@@ -48,7 +50,10 @@ const UserProfile = () => {
                     :
                     <div className="user-profile-container">
                         <div className="user-image">
-                            <img className="image" src={profile.image ? profile.image : 'https://eu.ui-avatars.com/api/?background=random&name='+profile.username} alt={'user profile imagen'} />
+                            {
+                                loadingImg ? <SemipolarLoading /> : null
+                            }
+                            <img className="image" onLoad={()=>setLoadingImg(false)} src={profile.image ? profile.image : 'https://eu.ui-avatars.com/api/?background=random&name='+profile.username} alt={'user profile imagen'} />
                         </div>
                         {
                             section === 'info' ? 
