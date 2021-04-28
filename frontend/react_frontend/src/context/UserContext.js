@@ -10,14 +10,18 @@ const ENDPOINT = "http://localhost:4200";
 const Context = React.createContext({})
 
 export function UserContextProvider({ children }) {
+  const [isLogin, setIsLogin] = useState(true)
 
   const checkAuth = () => {
     if (getToken()) {
       LoginService.getLoggedUser().then((data) => {
         setUser(data)
         setJwt(data.user.token)
+        setIsLogin(false)
       })
       return getToken()
+    }else{
+      setIsLogin(false)
     }
   }
 
@@ -33,7 +37,7 @@ export function UserContextProvider({ children }) {
 
 
 
-  return <Context.Provider value={{ jwt, setJwt, user, setUser, socketIo, setSocketIo, friends, setFriends, adminPanel, setAdminPanel }}>
+  return <Context.Provider value={{ jwt, setJwt, user, setUser, socketIo, setSocketIo, friends, setFriends, adminPanel, setAdminPanel, isLogin }}>
     {children}
   </Context.Provider>
 }

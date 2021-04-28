@@ -1,15 +1,16 @@
-import { useContext, useCallback } from 'react';
+import { useContext, useCallback, useState } from 'react';
 import Context from 'context/UserContext';
 import LoginService from '../services/login.service'
 import { saveToken, destroyToken } from 'services/jwt.service';
 import ProfileService from 'services/profile.service';
 
 export default function useUser() {
-  const { setJwt } = useContext(Context)
-  const { user, setUser } = useContext(Context)
-  const { adminPanel, setAdminPanel } = useContext(Context)
-  const { friends, setFriends } = useContext(Context)
-  const { socketIo } = useContext(Context)
+  const {
+    setJwt, user, setUser,
+    adminPanel, setAdminPanel,
+    friends, setFriends,
+    socketIo, isLogin
+  } = useContext(Context)
 
 
   const refreshFriends = useCallback(() => {
@@ -20,11 +21,11 @@ export default function useUser() {
 
 
   const handlePanelAdmin = () => {
-    if (user){
+    if (user) {
       if (user.type === 'admin') {
         setAdminPanel(true)
 
-      }else{
+      } else {
         setAdminPanel(false)
       }
     }
@@ -32,11 +33,11 @@ export default function useUser() {
 
 
   const login = useCallback(({ email, password }) => {
-    return LoginService.login({user:{email,password}}).then((request) => {
+    return LoginService.login({ user: { email, password } }).then((request) => {
       console.log(request);
-      if(request.errors){
+      if (request.errors) {
         return false
-      }else{
+      } else {
         setJwt(request.user.token);
         setUser(request.user)
         saveToken(request.user.token)
@@ -46,11 +47,11 @@ export default function useUser() {
   }, [setJwt, setUser])
 
   const register = useCallback(({ username, email, password }) => {
-    return LoginService.register({user:{username,email,password}}).then((request) => {
+    return LoginService.register({ user: { username, email, password } }).then((request) => {
       console.log(request);
-      if(request.errors){
+      if (request.errors) {
         return false
-      }else{
+      } else {
         setJwt(request.user.token);
         setUser(request.user)
         saveToken(request.user.token)
@@ -74,6 +75,7 @@ export default function useUser() {
     adminPanel, setAdminPanel,
     // getFriends,
     refreshFriends,
+    isLogin,
     friends,
     currentUser: user ? user.user : null,
     socketIo

@@ -14,7 +14,6 @@ import Profile from "./pages/MainApp/Profile/Profile";
 import Friends from "./pages/MainApp/Friends/Friends";
 
 import './App.css';
-import './App_Style.css';
 
 // Import changeBgImage from './utils/changeBgImage';
 import bg1 from "./assets/images/background/bg1.jpg"
@@ -39,7 +38,6 @@ import MenuTransfer from "pages/MainApp/Transfer/Menu/MenuTransfer";
 import Sender from "pages/MainApp/Transfer/Sender/Sender";
 import Receiver from "pages/MainApp/Transfer/Receiver/Receiver";
 import PanelAdminMain from "pages/PanelAdmin/Main";
-import DisappearedLoading from "react-loadingg/lib/DisappearedLoading";
 
 
 
@@ -49,6 +47,7 @@ export default function App() {
       <UserContextProvider>
         <main className="App">
           <PanelAdminSwitch />
+
         </main>
       </UserContextProvider>
     </PeerContext>
@@ -59,13 +58,10 @@ export default function App() {
 // La finalidad de este componente es renderizar el comp. Login o Friends dependiendo de si el usuario esta logueado o no
 // No se podía realizar esta comprobacion en App ya que el context aun no estaba definido
 const LoginSwitch = () => {
-  const { isAuthenticated, isLogin } = useUser()
+  const { isAuthenticated } = useUser()
   return (
     <>
-      {
-        isLogin ? null :
-          isAuthenticated ? <Friends /> : <Login />
-      }
+      {isAuthenticated ? <Friends /> : <Login />}
     </>
   )
 }
@@ -76,38 +72,37 @@ const PanelAdminSwitch = () => {
   return (
     <>
       {
-        adminPanel === 'true' ? <PanelAdminMain /> :
+        adminPanel === 'true' ? <PanelAdminMain/> :
           <>
             <BackgroundSlider images={[bg2, bg1, bg4]} duration={30} transition={0.4} />
-            <main className="app-container">
-              <Header />
-              <div className="main-container">
-                {
-                  width > 1270 ?
-                    <LoginSwitch /> :
-                    null
-                }
+            <Header />
+            {
+              width > 1270 ?
+                <LoginSwitch /> :
+                null
+            }
 
-                <section className="main-content">
-                  <Switch>
-                    <Route exact path="/"><MenuTransfer /></Route>
-                    <Route path="/admin"><SwitchToPanelAdmin /></Route>
-                    <Route path="/about"><About /></Route>
-                    <Route path="/login"><Login /></Route>
-                    <Route path="/myroom"><RoomOwner /></Route>
-                    <Route path="/receiver"><Receiver /></Route>
-                    <Route path="/room/:room"><Sender /></Route>
-                    <Route path="/profile/:username"><UserProfile /></Route>
-                    <Route path="/404"><NotFound /></Route>
-                    <PrivateRoute path="/profile" component={Profile} exact />
-                    <Redirect from='*' to='/404' />
-                  </Switch>
-                </section>
-              </div>
-            </main>
+            <section className="wrapper">
+              <Switch>
+                <Route exact path="/"><MenuTransfer /></Route>
+                <Route path="/admin"><SwitchToPanelAdmin /></Route>
+                <Route path="/about"><About /></Route>
+                <Route path="/login"><Login /></Route>
+                <Route path="/myroom"><RoomOwner /></Route>
+                <Route path="/receiver"><Receiver /></Route>
+                {/* <Route path="/sender"><Sender /></Route> */}
+                <Route path="/room/:room"><Sender /></Route>
+                {/* <Route path="/room/:room"><JoinRoom /></Route> */}
+                <Route path="/profile/:username"><UserProfile /></Route>
+                <Route path="/404"><NotFound /></Route>
+                <PrivateRoute path="/profile" component={Profile} exact />
+                {/* <PrivateRoute path="/profile/:username/edit" component={EditProfile} exact /> */}
+                <Redirect from='*' to='/404' />
 
-
-
+                {/* <Route path="/profile"><Profile /></Route> */}
+              </Switch>
+              {/* <div className="suscriptionsPage"></div> */}
+            </section>
           </>
       }
     </>)
@@ -116,8 +111,8 @@ const PanelAdminSwitch = () => {
 
 const SwitchToPanelAdmin = () => {
   const { isAuthenticated, logout, currentUser } = useUser()
-  if (isAuthenticated && currentUser.is_admin) {
-    localStorage.setItem('isPanelAdmin', true)
+  if ( isAuthenticated && currentUser.is_admin ) {
+    localStorage.setItem('isPanelAdmin',true)
     window.location.reload()
   } else {
     logout()

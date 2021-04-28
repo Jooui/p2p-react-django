@@ -31,6 +31,7 @@ const Login = () => {
     e.preventDefault();
     login({ email, password }).then((res) => {
       if (res === false) {
+        console.log(res);
         console.log("entra if");
         setToastr(true);
         setErrorMsg('Login error! Try Again')
@@ -44,6 +45,7 @@ const Login = () => {
     e.preventDefault();
     register({ username, email, password }).then((res) => {
       if (res === false) {
+        console.log(res);
         console.log("entra if");
         setToastr(true);
         setErrorMsg('Register error! Try Again')

@@ -3,22 +3,22 @@ import { PublishOutlined, ChatOutlined, FiberManualRecord } from '@material-ui/i
 import ProfileService from 'services/profile.service';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import useUser from 'hooks/useUser';
 
 const SectionFriends = () => {
-
   const [friends, setFriends] = useState()
-  const [loaded, setLoaded] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     ProfileService.getFollowingProfiles().then((data) => {
       setFriends(data)
-      setLoaded(true)
+      setLoading(false)
     })
   }, [])
 
   return (
     <>
-      {loaded ?
+      {!loading ?
         <div className="section-friends-wrapper">
           {
             friends.map((friend) => {
