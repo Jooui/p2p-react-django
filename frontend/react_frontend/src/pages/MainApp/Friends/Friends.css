@@ -2,7 +2,7 @@
   box-sizing: border-box;
   width: 350px;
   height: 530px;
-  border-radius: 25px;
+  border-radius: 15px;
   box-shadow: 1px 1px 10px black;
   background-color: white;
   margin: auto;
@@ -116,4 +116,5 @@
 .friends-wrapper{
   overflow-y: scroll;
   margin-right: 3px;
+  flex: 1;
 }

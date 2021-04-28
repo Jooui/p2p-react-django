@@ -1,0 +1,17 @@
+.sectionSearch {
+    box-sizing: border-box;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.searchUsersWrapper {
+    flex: 1;
+    height: 200px;
+    
+}
+
+.sectionSearch .searchbar_friends {
+    margin-bottom: 15px;
+}

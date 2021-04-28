@@ -40,12 +40,12 @@ const Friends = () => {
         <div className={"friends-nav-item "+(page === "friends" ? 'active':'')} onClick={() => setPage('friends')}>
           <PersonOutlineOutlined />
         </div>
-        <div className={"friends-nav-item "+(page === "groups" ? 'active':'')} onClick={() => setPage('groups')}>
+        {/* <div className={"friends-nav-item "+(page === "groups" ? 'active':'')} onClick={() => setPage('groups')}>
           <PeopleOutlineOutlined />
         </div>
         <div className={"friends-nav-item "+(page === "favorites" ? 'active':'')} onClick={() => setPage('favorites')}>
           <StarBorderRounded />
-        </div>
+        </div> */}
         <div className={"friends-nav-item "+(page === "search" ? 'active':'')} onClick={() => setPage('search')}>
           <SearchRounded />
         </div>
@@ -53,7 +53,7 @@ const Friends = () => {
       <section className="friends-right">
         <div className="friends-right-title">
           <h1>Users</h1>
-          <input type="text" name="searchbar_friends" id="searchbar_friends" className="searchbar_friends" placeholder="Search.." />
+          {/* <input type="text" name="searchbar_friends" id="searchbar_friends" className="searchbar_friends" placeholder="Search.." /> */}
         </div>
         <section className="friends-wrapper">
           {/* <SectionFriends /> */}

@@ -76,6 +76,7 @@
     justify-self: flex-start;
     margin-right: auto;
     transition: 0.1s;
+    cursor: pointer;
 }
 
 .goAppBtn:hover{

@@ -36,7 +36,9 @@ class ProfilesRetrieveAPIView(ListAPIView):
     queryset = Profile.objects.select_related('user')
 
     def list(self, request, username, *args, **kwargs):
-        queryset = self.queryset.filter(user__username__startswith=username)
+        current = self.request.user.profile
+        # Obtenemos todos los usuaios que empiecen por el valor indicado, excepto el del usuario actual
+        queryset = self.queryset.filter(user__username__startswith=username).exclude(user__username=current)
         serializer = ProfileSerializer(queryset, many=True)
         return Response(serializer.data)
 

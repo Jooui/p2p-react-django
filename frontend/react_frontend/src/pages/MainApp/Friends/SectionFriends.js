@@ -2,6 +2,7 @@ import './SectionFriends.css';
 import { PublishOutlined, ChatOutlined, FiberManualRecord } from '@material-ui/icons';
 import ProfileService from 'services/profile.service';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const SectionFriends = () => {
 
@@ -24,7 +25,7 @@ const SectionFriends = () => {
             friends.map((friend) => {
               return (
 
-                  <article className="user-container" key={friend.username+""}>
+                  <Link to={"/profile/"+friend.username} className="user-container" key={friend.username+""}>
                     <div className="user-img"></div>
                     <span>{friend.username}</span>
                     <div className="user-actions">
@@ -33,7 +34,7 @@ const SectionFriends = () => {
                       <FiberManualRecord className="user-status user-status--connected" />
                     </div>
                     {/* <hr className="user-separator" /> */}
-                  </article>
+                  </Link>
               )
             })
           }
