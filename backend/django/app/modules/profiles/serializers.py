@@ -6,6 +6,9 @@ from .models import Profile
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
     admin  = serializers.BooleanField(source='user.is_admin')
+    last_seen = serializers.CharField(source='user.last_seen')
+    online = serializers.BooleanField(source='user.online')
+    
     bio = serializers.CharField(allow_blank=True, required=False)
     image = serializers.CharField(allow_blank=True, required=False) #para que funcione el UPDATE de la imagen
     # image = serializers.SerializerMethodField()
@@ -15,7 +18,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ('username', 'bio', 'image', 'following','followersCount','admin')
+        fields = ('username', 'bio', 'image', 'following','followersCount','admin','last_seen','online')
         read_only_fields = ('username',)
 
     def get_image(self, obj):

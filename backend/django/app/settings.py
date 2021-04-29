@@ -56,7 +56,23 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.modules.authentication.activeuser_middleware.ActiveUserMiddleware'
 ]
+
+# Setup caching per Django docs. In actuality, you'd probably use memcached instead of local memory.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'default-cache'
+    }
+}
+
+# Number of seconds of inactivity before a user is marked offline
+USER_ONLINE_TIMEOUT = 300
+
+# Number of seconds that we will keep track of inactive users for before 
+# their last seen is removed from the cache
+USER_LASTSEEN_TIMEOUT = 60 * 60 * 24 * 7
 
 ROOT_URLCONF = 'app.urls'
 
@@ -159,6 +175,10 @@ CORS_ORIGIN_ALLOW_ALL = True
 # the `authentication` module. This module is registered above in a setting
 # called `INSTALLED_APPS`.
 AUTH_USER_MODEL = 'authentication.User'
+
+AUTHENTICATION_BACKENDS = [
+    'app.modules.authentication.backends.JWTAuthentication',
+]
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'app.modules.core.exceptions.core_exception_handler',

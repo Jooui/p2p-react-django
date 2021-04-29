@@ -1,6 +1,7 @@
 import jwt
 
 from datetime import datetime, timedelta
+from django.core.cache import cache
 
 from django.conf import settings
 from django.contrib.auth.models import (
@@ -137,3 +138,17 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token.decode('utf-8')
+
+    def last_seen(self):
+        return cache.get('seen_%s' % self.username)
+
+    def online(self):
+        if self.last_seen():
+            now = datetime.datetime.now()
+            if now > self.last_seen() + datetime.timedelta(
+                         seconds=settings.USER_ONLINE_TIMEOUT):
+                return False
+            else:
+                return True
+        else:
+            return False
