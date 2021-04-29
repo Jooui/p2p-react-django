@@ -8,16 +8,21 @@ const Header = () => {
 
   return (
     <header className="main-header">
-      <h1>Peer-App</h1>
+      <Link to="/" className="titleApp">Peer-App</Link>
       <nav>
         <div className="header-item">
           <Link to="/">Home</Link>
           <div className="underline-item"></div>
         </div>
         <div className="header-item">
-          <Link to="/about">About</Link>
+          {/* <Link to="/">Pricing</Link> */}
+          <a href="#section-subscriptions">Pricing</a>
           <div className="underline-item"></div>
         </div>
+        {/* <div className="header-item">
+          <Link to="/about">About</Link>
+          <div className="underline-item"></div>
+        </div> */}
         <div className="header-item">
           {isAuthenticated && currentUser ?
             currentUser ?

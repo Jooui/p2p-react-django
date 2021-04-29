@@ -137,3 +137,18 @@
         margin-bottom: 20px;
     }
 }
+
+@media screen and (max-width:500px){
+    .card-menu-transfer img {
+        display: none;
+    }
+
+    .card-menu-transfer h2 {
+        font-size: 24px;
+        margin: 10px;
+    }
+    .card-menu-transfer h3 {
+        font-size: 14px;
+        
+    }
+}

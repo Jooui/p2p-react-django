@@ -6,7 +6,9 @@
   padding: 0px 100px;
 }
 
-.main-header h1{
+.main-header .titleApp{
+  text-decoration: none;
+  margin: 30px;
   white-space: nowrap;
   cursor: pointer;
   font-weight: 900;

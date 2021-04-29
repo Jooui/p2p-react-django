@@ -40,6 +40,8 @@ import Sender from "pages/MainApp/Transfer/Sender/Sender";
 import Receiver from "pages/MainApp/Transfer/Receiver/Receiver";
 import PanelAdminMain from "pages/PanelAdmin/Main";
 import DisappearedLoading from "react-loadingg/lib/DisappearedLoading";
+import SubscriptionsPage from "pages/MainApp/Subscriptions/Subscriptions";
+import ScrollDownHomeBtn from "components/MainApp/ScrollDownHomeBtn/ScrollDownHomeBtn";
 
 
 
@@ -78,8 +80,9 @@ const PanelAdminSwitch = () => {
       {
         adminPanel === 'true' ? <PanelAdminMain /> :
           <>
-            <BackgroundSlider images={[bg1, bg2, bg4]} duration={30} transition={0.4} />
             <main className="app-container">
+            <BackgroundSlider images={[bg1, bg2, bg4]} duration={30} transition={0.4} />
+
               <Header />
               <div className="main-container">
                 {
@@ -103,9 +106,10 @@ const PanelAdminSwitch = () => {
                     <Redirect from='*' to='/404' />
                   </Switch>
                 </section>
-              </div>
+                    {width > 600 ?  <ScrollDownHomeBtn /> : null}
+                </div>
             </main>
-
+            <SubscriptionsPage />
 
 
           </>
