@@ -56,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app.modules.authentication.activeuser_middleware.ActiveUserMiddleware'
 ]
 
 # Setup caching per Django docs. In actuality, you'd probably use memcached instead of local memory.
@@ -175,10 +174,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 # the `authentication` module. This module is registered above in a setting
 # called `INSTALLED_APPS`.
 AUTH_USER_MODEL = 'authentication.User'
-
-AUTHENTICATION_BACKENDS = [
-    'app.modules.authentication.backends.JWTAuthentication',
-]
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'app.modules.core.exceptions.core_exception_handler',

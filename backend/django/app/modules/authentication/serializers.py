@@ -95,11 +95,12 @@ class UserSerializer(serializers.ModelSerializer):
 
     bio = serializers.CharField(source='profile.bio', read_only=True)
     image = serializers.CharField(source='profile.image', read_only=True)
+    last_seen = serializers.CharField(source='get_last_seen')
 
     class Meta:
         model = User
         fields = (
-            'id', 'email', 'username', 'password', 'token', 'profile', 'bio', 'image', 'is_admin', 'is_active','last_seen','online')
+            'id', 'email', 'username', 'password', 'token', 'profile', 'bio', 'image', 'is_admin', 'is_active','online','last_seen')
 
         read_only_fields = ('token',)
 

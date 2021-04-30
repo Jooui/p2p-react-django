@@ -5,6 +5,10 @@ from app.modules.core.permissions import IsAdmin
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+import datetime
+from django.core.cache import cache
+from django.conf import settings
+
 from .renderers import UserJSONRenderer
 from .serializers import (
     LoginSerializer, RegistrationSerializer, UserSerializer, RegistrationSuperUserSerializer
@@ -56,6 +60,11 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
     def retrieve(self, request, *args, **kwargs):
         serializer = self.serializer_class(request.user)
+        current_user = self.request.user
+        if request.user.is_authenticated:
+            now = datetime.datetime.now()
+            cache.set('seen_%s' % (current_user.username), now, settings.USER_LASTSEEN_TIMEOUT)
+
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def update(self, request, *args, **kwargs):

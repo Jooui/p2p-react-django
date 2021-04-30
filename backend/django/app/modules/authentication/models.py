@@ -142,11 +142,13 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     def last_seen(self):
         return cache.get('seen_%s' % self.username)
 
+    def get_last_seen(self):
+        return str(self.last_seen())
+
     def online(self):
         if self.last_seen():
-            now = datetime.datetime.now()
-            if now > self.last_seen() + datetime.timedelta(
-                         seconds=settings.USER_ONLINE_TIMEOUT):
+            now = datetime.now()
+            if now > self.last_seen() + timedelta(seconds=settings.USER_ONLINE_TIMEOUT):
                 return False
             else:
                 return True
