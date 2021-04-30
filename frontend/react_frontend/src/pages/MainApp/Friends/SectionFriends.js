@@ -30,7 +30,7 @@ const SectionFriends = () => {
                     <div className="user-actions">
                       <PublishOutlined className="share-user" />
                       <ChatOutlined className="chat-user" />
-                      <FiberManualRecord className="user-status user-status--connected" />
+                      <FiberManualRecord className={"user-status "+(friend.online ? 'user-status--connected':'')} />
                     </div>
                     {/* <hr className="user-separator" /> */}
                   </Link>

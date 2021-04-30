@@ -17,12 +17,18 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     token = serializers.CharField(max_length=255, read_only=True)
 
+    # image = serializers.SerializerMethodField()
+
     class Meta:
         model = User
 
         fields = ['email', 'username', 'password', 'token']
 
+    # def get_image(self, validated_data):
+    #     return "https://avatars.dicebear.com/api/micah/joel.svg"
+
     def create(self, validated_data):
+        print(validated_data)
         return User.objects.create_user(**validated_data)
 
 class RegistrationSuperUserSerializer(serializers.ModelSerializer):
@@ -35,9 +41,14 @@ class RegistrationSuperUserSerializer(serializers.ModelSerializer):
 
     token = serializers.CharField(max_length=255, read_only=True)
 
+    # image = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = ['email', 'username', 'password', 'token']
+
+    # def get_image(self, validated_data):
+    #     return "https://avatars.dicebear.com/api/micah/joel.svg"
 
     def create(self, validated_data):
         return User.objects.create_superuser(**validated_data)

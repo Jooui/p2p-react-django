@@ -3,6 +3,24 @@ from rest_framework import serializers
 from .models import Profile
 
 
+class ImageSerializerField(serializers.Field):
+
+    def to_representation(self, obj):
+        if obj:
+            default_image = obj
+        else:
+            default_image = "https://avatars.dicebear.com/api/micah/"+self.root.instance.user.username+".svg"
+        return default_image            
+
+    def to_internal_value(self, data):
+        print(data)
+        if data:
+            default_image = data
+        else:
+            default_image = "https://avatars.dicebear.com/api/micah/"+self.root.instance.username+".svg"
+        return default_image     
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
     admin  = serializers.BooleanField(source='user.is_admin')
@@ -11,8 +29,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     last_seen = serializers.CharField(source='user.get_last_seen')
     
     bio = serializers.CharField(allow_blank=True, required=False)
-    image = serializers.CharField(allow_blank=True, required=False) #para que funcione el UPDATE de la imagen
-    # image = serializers.SerializerMethodField()
+    # image = serializers.CharField(allow_blank=True, required=False) #para que funcione el UPDATE de la imagen
+    image = ImageSerializerField()
     # admin = serializers.BooleanField(required=False)
     following = serializers.SerializerMethodField()
     followersCount = serializers.SerializerMethodField()
