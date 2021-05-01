@@ -4,29 +4,15 @@ from .models import Profile
 
 
 class ImageSerializerField(serializers.Field):
-    username = serializers.CharField(source="user.username")
+    username = serializers.CharField(source="")
 
-    # class Meta:
-    #     model = Profile
-    #     fields = ('__all__')
+    def to_representation(self, value):
 
-    def to_representation(self, obj):
-        print("========================")
-        print(obj)
-        print(self.username)
-        print(self.root.instance)
-        if obj:
-            default_image = obj
+        if value.image:
+            default_image = value.image
         else:
-            # self.root.instance.username
-            default_image = "https://avatars.dicebear.com/api/micah/provisional.svg"
+            default_image = "https://avatars.dicebear.com/api/initials/"+value.user.username+".svg"
         return default_image
-
-        iterable = data.all() if isinstance(data, Profile) else data
-
-        return [
-            self.child.to_representation(item) for item in iterable
-        ]
 
     def to_internal_value(self, data):
         print(data)
@@ -46,7 +32,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     
     bio = serializers.CharField(allow_blank=True, required=False)
     # image = serializers.CharField(allow_blank=True, required=False) #para que funcione el UPDATE de la imagen
-    image = ImageSerializerField()
+    image = ImageSerializerField(source='*')
     # admin = serializers.BooleanField(required=False)
     following = serializers.SerializerMethodField()
     followersCount = serializers.SerializerMethodField()
