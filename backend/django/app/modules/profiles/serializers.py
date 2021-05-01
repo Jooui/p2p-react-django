@@ -4,13 +4,29 @@ from .models import Profile
 
 
 class ImageSerializerField(serializers.Field):
+    username = serializers.CharField(source="user.username")
+
+    # class Meta:
+    #     model = Profile
+    #     fields = ('__all__')
 
     def to_representation(self, obj):
+        print("========================")
+        print(obj)
+        print(self.username)
+        print(self.root.instance)
         if obj:
             default_image = obj
         else:
-            default_image = "https://avatars.dicebear.com/api/micah/"+self.root.instance.user.username+".svg"
-        return default_image            
+            # self.root.instance.username
+            default_image = "https://avatars.dicebear.com/api/micah/provisional.svg"
+        return default_image
+
+        iterable = data.all() if isinstance(data, Profile) else data
+
+        return [
+            self.child.to_representation(item) for item in iterable
+        ]
 
     def to_internal_value(self, data):
         print(data)

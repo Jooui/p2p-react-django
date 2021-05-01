@@ -8,6 +8,7 @@ import useUser from 'hooks/useUser';
 const SectionFriends = () => {
   const [friends, setFriends] = useState()
   const [loading, setLoading] = useState(true)
+  console.log(friends);
 
   useEffect(() => {
     ProfileService.getFollowingProfiles().then((data) => {
@@ -21,24 +22,25 @@ const SectionFriends = () => {
       {!loading ?
         <div className="section-friends-wrapper">
           {
-            friends.map((friend) => {
-              return (
+            friends ?
+              friends.map((friend) => {
+                return (
 
-                  <Link to={"/profile/"+friend.username} className="user-container" key={friend.username+""}>
+                  <Link to={"/profile/" + friend.username} className="user-container" key={friend.username + ""}>
                     <div className="user-img"></div>
                     <span>{friend.username}</span>
                     <div className="user-actions">
                       <PublishOutlined className="share-user" />
                       <ChatOutlined className="chat-user" />
-                      <FiberManualRecord className={"user-status "+(friend.online ? 'user-status--connected':'')} />
+                      <FiberManualRecord className={"user-status " + (friend.online ? 'user-status--connected' : '')} />
                     </div>
                     {/* <hr className="user-separator" /> */}
                   </Link>
-              )
-            })
+                )
+              }) : null
           }
 
-         
+
         </div> : null
       }
     </>
