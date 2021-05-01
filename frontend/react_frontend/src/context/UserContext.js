@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { getToken } from '../services/jwt.service'
 import LoginService from '../services/login.service'
-import socketIOClient from "socket.io-client";
+import { io } from "socket.io-client";
 import ProfileService from 'services/profile.service';
 // const ENDPOINT = "https://3000-apricot-pinniped-h320hydn.ws-eu03.gitpod.io/";
 const ENDPOINT = "http://localhost:4200";
@@ -33,6 +33,7 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     ProfileService.getFollowingProfiles().then((data) => setFriends(data))
+    setSocketIo(io("http://localhost:4200"))
   }, [])
 
 

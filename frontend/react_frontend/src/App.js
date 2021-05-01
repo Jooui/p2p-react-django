@@ -42,6 +42,7 @@ import PanelAdminMain from "pages/PanelAdmin/Main";
 import DisappearedLoading from "react-loadingg/lib/DisappearedLoading";
 import SubscriptionsPage from "pages/MainApp/Subscriptions/Subscriptions";
 import ScrollDownHomeBtn from "components/MainApp/ScrollDownHomeBtn/ScrollDownHomeBtn";
+import Chat from "pages/MainApp/Chat/Chat";
 
 
 
@@ -101,6 +102,7 @@ const PanelAdminSwitch = () => {
                     <Route path="/receiver"><Receiver /></Route>
                     <Route path="/room/:room"><Sender /></Route>
                     <Route path="/profile/:username"><UserProfile /></Route>
+                    <Route path="/chat/:username"><Chat /></Route>
                     <Route path="/404"><NotFound /></Route>
                     <PrivateRoute path="/profile" component={Profile} exact />
                     <Redirect from='*' to='/404' />
