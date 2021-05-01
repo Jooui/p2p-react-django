@@ -37,15 +37,11 @@ const SectionSearch = () => {
             return (
 
               <Link to={"/profile/"+friend.username} className="user-container" key={friend.username + ""}>
-                <div className="user-img"></div>
+                <div className="user-img"><img src={friend.image} /></div>
                 <span>{friend.username}</span>
                 <div className="user-actions">
-                  {/* <PublishOutlined className="share-user" />
-                  <ChatOutlined className="chat-user" />
-                  <FiberManualRecord className="user-status user-status--connected" /> */}
                   <KeyboardArrowRightRounded />
                 </div>
-                {/* <hr className="user-separator" /> */}
               </Link>
             )
           }) : 
