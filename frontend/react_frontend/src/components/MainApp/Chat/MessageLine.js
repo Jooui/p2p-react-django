@@ -1,14 +1,14 @@
 const MessageLine = (props) => {
-    console.log(props);
+    let date = typeof props.msg.created == "string" ? new Date(props.msg.created) : props.msg.created
     return (
         <article className={"message " + (props.type === "sender" ? "sender" : "receiver")}>
             <p>
-                {props.data.message}
+                {props.msg.message}
             </p>
             <span className="msg-time">{
-                props.data.created.getHours()
+                date.getHours()
                 + ":" +
-                (props.data.created.getMinutes() < 10 ? '0' : '') + props.msg.created.getMinutes()
+                (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
             }</span>
         </article>
     )

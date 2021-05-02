@@ -11,7 +11,9 @@ const SectionFriends = () => {
 
   useEffect(() => {
     ProfileService.getFollowingProfiles().then((data) => {
-      setFriends(data)
+      // Show connected users first
+      let sorted = data.sort((x, y) => (x.online === y.online) ? 0 : x.online ? -1 : 1);
+      setFriends(sorted)
       setLoading(false)
     })
   }, [])

@@ -31,7 +31,7 @@
 }
 
 .chat-status {
-    flex: 1;
+    /* flex: 1; */
     justify-content: flex-end;
     font-weight: 500;
     display: flex;
@@ -50,13 +50,17 @@
 }
 
 .message {
-    /* width: 70%; */
+    max-width: 90%;
     border-radius: 20px;
     margin: 8px 20px;
     padding: 0px 20px;
     font-weight: 500;
     box-sizing: border-box;
     display: flex;
+}
+
+.message p{
+    word-break: break-all;
 }
 
 /* RIGHT SIDE*/

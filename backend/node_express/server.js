@@ -24,7 +24,7 @@ io.on('connection', function(client) {
 
     client.on('newuser', function(data) {
       if (!currentUsers.find((e) => e.username === data.username && e.socketid === data.socketid)){
-        currentUsers = currentUsers.filter((e) => e.username === data.username)
+        currentUsers = currentUsers.filter((e) => e.username !== data.username)
         console.log("new user: ", data.username);
         currentUsers.push(data)
       }
@@ -33,6 +33,7 @@ io.on('connection', function(client) {
     client.on('newMsg', function(data) {
       console.log(data);
       let toUser = currentUsers.find((e) => e.username === data.receiver)
+      console.log(toUser);
       if (toUser) client.broadcast.to(toUser.socketid).emit('receiveMsg', data);
     });
 });
