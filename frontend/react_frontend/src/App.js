@@ -82,16 +82,17 @@ const PanelAdminSwitch = () => {
         adminPanel === 'true' ? <PanelAdminMain /> :
           <>
             <main className="app-container">
-            <BackgroundSlider images={[bg1, bg2, bg4]} duration={30} transition={0.4} />
+              <div className="black-bg-responsive"></div>
+              <BackgroundSlider images={[bg1, bg2, bg4]} duration={30} transition={0.4} />
 
               <Header />
               <div className="main-container">
                 {
-                  width > 1270 ?
-                    <LoginSwitch /> :
-                    null
+                  // width > 1270 ?
+                  //   <LoginSwitch /> :
+                  //   null
                 }
-
+                <LoginSwitch />
                 <section className="main-content">
                   <SocketIoConnection />
                   <Switch>
@@ -109,8 +110,8 @@ const PanelAdminSwitch = () => {
                     <Redirect from='*' to='/404' />
                   </Switch>
                 </section>
-                    {width > 600 ?  <ScrollDownHomeBtn /> : null}
-                </div>
+                {width > 600 ? <ScrollDownHomeBtn /> : null}
+              </div>
             </main>
             <SubscriptionsPage />
 
@@ -135,15 +136,15 @@ const SwitchToPanelAdmin = () => {
 
 const SocketIoConnection = () => {
   // const [is] = useState()
-  const {isAuthenticated,currentUser, socketIo, isSocketio, setIsSocketio} = useUser()
-  if (isAuthenticated && currentUser && !isSocketio &&socketIo.id){
+  const { isAuthenticated, currentUser, socketIo, isSocketio, setIsSocketio } = useUser()
+  if (isAuthenticated && currentUser && !isSocketio && socketIo.id) {
     // setSocketIo(io("http://localhost:4200"))
-  //   let a = {...socketIo}
-  //   console.log("entraaa");
-  //   console.log(socketIo);
-  //   console.log(a);
-  //   console.log(a.id);
-    socketIo.emit('newuser', {username:currentUser.username, socketid: socketIo.id})
+    //   let a = {...socketIo}
+    //   console.log("entraaa");
+    //   console.log(socketIo);
+    //   console.log(a);
+    //   console.log(a.id);
+    socketIo.emit('newuser', { username: currentUser.username, socketid: socketIo.id })
     setIsSocketio(true)
   }
   return (null)

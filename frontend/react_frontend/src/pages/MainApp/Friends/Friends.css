@@ -120,3 +120,18 @@
   margin-right: 3px;
   flex: 1;
 }
+
+@media screen and (max-width: 1250px) {
+  .black-bg-responsive{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.822);
+    z-index: 9999;
+  }
+  .friends-container {
+    /* display: none; */
+    z-index: 99999;
+    position: fixed;
+  }
+}
