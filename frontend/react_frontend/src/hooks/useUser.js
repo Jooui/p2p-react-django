@@ -9,14 +9,16 @@ export default function useUser() {
     setJwt, user, setUser,
     adminPanel, setAdminPanel,
     friends, setFriends,
-    socketIo, isLogin
+    socketIo, isLogin, setSocketIo,
+    isSocketio, setIsSocketio,
+    DB
   } = useContext(Context)
 
 
   const refreshFriends = useCallback(() => {
-    ProfileService.getFollowingProfiles().then((data) => {
-      setFriends(data)
-    })
+    // ProfileService.getFollowingProfiles().then((data) => {
+    //   setFriends(data)
+    // })
   }, [friends])
 
 
@@ -78,7 +80,11 @@ export default function useUser() {
     isLogin,
     friends,
     currentUser: user ? user.user : null,
-    socketIo
+    socketIo,
+    isSocketio, 
+    setIsSocketio,
+    setSocketIo,
+    DB
   }
 }
 

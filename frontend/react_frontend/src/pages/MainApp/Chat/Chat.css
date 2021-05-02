@@ -42,10 +42,11 @@
 
 .chat-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     box-sizing: border-box;
     padding-top: 8px;
     flex: 1;
+    overflow-y: scroll;
 }
 
 .message {

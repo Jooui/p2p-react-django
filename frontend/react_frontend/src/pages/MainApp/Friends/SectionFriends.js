@@ -13,17 +13,17 @@ const SectionFriends = () => {
     ProfileService.getFollowingProfiles().then((data) => {
       setFriends(data)
       setLoading(false)
-      
-      // Cada minuto y medio se refrescara la información
-      setTimeout(() => {
-        setInterval(() => {
-          ProfileService.getFollowingProfiles().then((data) => {
-            setFriends(data)
-          })
-        }, 90000);
-      }, 90000);
     })
   }, [])
+
+  // Cada minuto y medio se refrescara la información
+  // setTimeout(() => {
+  //   setInterval(() => {
+  //     ProfileService.getFollowingProfiles().then((data) => {
+  //       setFriends(data)
+  //     })
+  //   }, 120000);
+  // }, 120000);
 
   return (
     <>
@@ -33,7 +33,7 @@ const SectionFriends = () => {
             friends ?
               friends.map((friend) => {
                 return (
-                  <Link className="user-container" key={friend.username + ""}>
+                  <button className="user-container" key={friend.username + ""}>
                     <div className="user-img"><img src={friend.image} /></div>
                     <span>{friend.username}</span>
                     <div className="user-actions">
@@ -44,7 +44,7 @@ const SectionFriends = () => {
                       <Link to={"/chat/" + friend.username} className="user-action"><ChatRounded />&nbsp;&nbsp; Chat</Link>
                       <Link to={"/profile/" + friend.username} className="user-action"><AccountCircleRounded />&nbsp;&nbsp; Profile</Link>
                     </div>
-                  </Link>
+                  </button>
                 )
               }) : null
           }

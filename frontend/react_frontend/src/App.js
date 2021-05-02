@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import BackgroundSlider from 'react-background-slider'
 import Header from './components/MainApp/layout/Header'
@@ -93,6 +93,7 @@ const PanelAdminSwitch = () => {
                 }
 
                 <section className="main-content">
+                  <SocketIoConnection />
                   <Switch>
                     <Route exact path="/"><MenuTransfer /></Route>
                     <Route path="/admin"><SwitchToPanelAdmin /></Route>
@@ -130,4 +131,20 @@ const SwitchToPanelAdmin = () => {
   }
 
   return (<></>)
+}
+
+const SocketIoConnection = () => {
+  // const [is] = useState()
+  const {isAuthenticated,currentUser, socketIo, isSocketio, setIsSocketio} = useUser()
+  if (isAuthenticated && currentUser && !isSocketio &&socketIo.id){
+    // setSocketIo(io("http://localhost:4200"))
+  //   let a = {...socketIo}
+  //   console.log("entraaa");
+  //   console.log(socketIo);
+  //   console.log(a);
+  //   console.log(a.id);
+    socketIo.emit('newuser', {username:currentUser.username, socketid: socketIo.id})
+    setIsSocketio(true)
+  }
+  return (null)
 }

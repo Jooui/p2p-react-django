@@ -19,6 +19,9 @@
   text-decoration: none;
   color: #151414;
   position: relative;
+  font-family: Poppins;
+  outline: none;
+  background-color: transparent;
 }
 
 .user-actions-dropdown {
