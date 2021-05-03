@@ -35,3 +35,15 @@
         padding: 45px 50px 50px 50px;
     }
 }
+
+.hide {
+    display: none;
+}
+
+.black-bg-responsive{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.822);
+    z-index: 9999;
+  }

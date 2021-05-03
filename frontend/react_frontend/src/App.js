@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import BackgroundSlider from 'react-background-slider'
 import Header from './components/MainApp/layout/Header'
@@ -26,14 +26,19 @@ import useWindowDimensions from './hooks/useWindowDimensions'
 import useUser from './hooks/useUser'
 
 
-// Import Contexts
+// Import Contexts Providers
+import { GlobalContextProvider } from "context/GlobalContext";
 import { UserContextProvider } from './context/UserContext';
 import { PeerContext } from './context/PeerContext';
+
+import GlobalContext from 'context/GlobalContext';
+
+
 import RoomOwner from "pages/MainApp/Share/RoomOwner/RoomOwner";
 // import JoinRoom from "pages/Share/JoinRoom/JoinRoom";
 import UserProfile from "pages/MainApp/Profile/UserProfile";
 import NotFound from "pages/MainApp/404/NotFound";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 // import EditProfile from "pages/Profile/EditProfile";
 import MenuTransfer from "pages/MainApp/Transfer/Menu/MenuTransfer";
 import Sender from "pages/MainApp/Transfer/Sender/Sender";
@@ -43,18 +48,22 @@ import DisappearedLoading from "react-loadingg/lib/DisappearedLoading";
 import SubscriptionsPage from "pages/MainApp/Subscriptions/Subscriptions";
 import ScrollDownHomeBtn from "components/MainApp/ScrollDownHomeBtn/ScrollDownHomeBtn";
 import Chat from "pages/MainApp/Chat/Chat";
+import OpenChatBtn from "components/MainApp/Chat/OpenChatBtn";
 
 
 
 export default function App() {
   return (
-    <PeerContext>
-      <UserContextProvider>
-        <main className="App">
-          <PanelAdminSwitch />
-        </main>
-      </UserContextProvider>
-    </PeerContext>
+    <GlobalContextProvider>
+      <PeerContext>
+        <UserContextProvider>
+          <main className="App">
+            <PanelAdminSwitch />
+          </main>
+        </UserContextProvider>
+      </PeerContext>
+    </GlobalContextProvider>
+
   );
 }
 
@@ -76,13 +85,22 @@ const LoginSwitch = () => {
 const PanelAdminSwitch = () => {
   const { adminPanel } = useUser()
   const { width } = useWindowDimensions();
+  const { showFriends, setShowFriends } = useContext(GlobalContext)
+
+  let location = useLocation();
+  useEffect(() => {
+    setShowFriends(false)
+  }, [location]);
+
+  console.log(showFriends);
+
   return (
     <>
       {
         adminPanel === 'true' ? <PanelAdminMain /> :
           <>
             <main className="app-container">
-              <div className="black-bg-responsive"></div>
+              <div className={"black-bg-responsive " + (showFriends ? "" : "hide")}></div>
               <BackgroundSlider images={[bg1, bg2, bg4]} duration={30} transition={0.4} />
 
               <Header />
@@ -112,6 +130,7 @@ const PanelAdminSwitch = () => {
                 </section>
                 {width > 600 ? <ScrollDownHomeBtn /> : null}
               </div>
+              {width < 1250 ? <OpenChatBtn /> : null}
             </main>
             <SubscriptionsPage />
 

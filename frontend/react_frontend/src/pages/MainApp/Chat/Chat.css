@@ -166,3 +166,19 @@
     align-self: flex-start;
     margin: 3px -8px 5px 20px;
 }
+
+@media screen and (max-width:678px) {
+    .chat-footer {
+        padding: 0px 10px;
+        
+    }
+
+    .chat-footer .chat-input-msg {
+        width: 70%;
+    }
+
+    .chat-footer .send-btn-chat {
+        width: 40px;
+        height: 40px;
+    }
+}

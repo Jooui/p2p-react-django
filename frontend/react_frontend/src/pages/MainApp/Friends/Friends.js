@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import './Friends.css'
 import { ChatOutlined, PeopleOutlineOutlined, PersonOutlineOutlined, SearchRounded, StarBorderRounded } from '@material-ui/icons';
@@ -9,6 +9,7 @@ import SectionSearch from './SectionSearch';
 import SectionGroups from './SectionGroups';
 import SectionFavorites from './SectionFavorites';
 import useUser from 'hooks/useUser';
+import GlobalContext from 'context/GlobalContext';
 
 let renderPage = (page) => {
   switch (page) {
@@ -28,6 +29,7 @@ let renderPage = (page) => {
 const Friends = () => {
   const [page, setPage] = useState("friends");
   const { isAuthenticated, currentUser } = useUser()
+  const { showFriends, setShowFriends } = useContext(GlobalContext)
 
   useEffect(() => {
 
@@ -36,7 +38,7 @@ const Friends = () => {
     <>
       {
         isAuthenticated && currentUser ?
-          <div className="friends-container">
+          <div className={"friends-container "+(showFriends ? '' : 'hide')}>
             <nav>
               <div className="modal-svg">
                 <ChatOutlined />
