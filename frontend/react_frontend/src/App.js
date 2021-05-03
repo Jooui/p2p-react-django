@@ -72,18 +72,19 @@ export default function App() {
 // No se podía realizar esta comprobacion en App ya que el context aun no estaba definido
 const LoginSwitch = () => {
   const { isAuthenticated, isLogin } = useUser()
+  const { width } = useWindowDimensions();
   return (
     <>
       {
         isLogin ? null :
-          isAuthenticated ? <Friends /> : <Login />
+          isAuthenticated ? <Friends /> : ( width > 1270 ? <Login /> : null)
       }
     </>
   )
 }
 
 const PanelAdminSwitch = () => {
-  const { adminPanel } = useUser()
+  const { adminPanel, isAuthenticated } = useUser()
   const { width } = useWindowDimensions();
   const { showFriends, setShowFriends } = useContext(GlobalContext)
 
@@ -106,9 +107,8 @@ const PanelAdminSwitch = () => {
               <Header />
               <div className="main-container">
                 {
-                  // width > 1270 ?
-                  //   <LoginSwitch /> :
-                  //   null
+                  
+                    // <LoginSwitch /> 
                 }
                 <LoginSwitch />
                 <section className="main-content">
@@ -128,9 +128,9 @@ const PanelAdminSwitch = () => {
                     <Redirect from='*' to='/404' />
                   </Switch>
                 </section>
-                {width > 600 ? <ScrollDownHomeBtn /> : null}
+                {width > 978 ? <ScrollDownHomeBtn /> : null}
               </div>
-              {width < 1250 ? <OpenChatBtn /> : null}
+              {isAuthenticated && width < 1250 ? <OpenChatBtn /> : null}
             </main>
             <SubscriptionsPage />
 
