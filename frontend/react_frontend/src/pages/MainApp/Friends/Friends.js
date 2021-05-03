@@ -10,6 +10,7 @@ import SectionGroups from './SectionGroups';
 import SectionFavorites from './SectionFavorites';
 import useUser from 'hooks/useUser';
 import GlobalContext from 'context/GlobalContext';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 let renderPage = (page) => {
   switch (page) {
@@ -30,6 +31,8 @@ const Friends = () => {
   const [page, setPage] = useState("friends");
   const { isAuthenticated, currentUser } = useUser()
   const { showFriends, setShowFriends } = useContext(GlobalContext)
+  const { width } = useWindowDimensions();
+
 
   useEffect(() => {
 
@@ -38,7 +41,7 @@ const Friends = () => {
     <>
       {
         isAuthenticated && currentUser ?
-          <div className={"friends-container "+(showFriends ? '' : 'hide')}>
+          <div className={"friends-container " + (width < 1250 ? (showFriends ? '' : 'hide') : '')}>
             <nav>
               <div className="modal-svg">
                 <ChatOutlined />

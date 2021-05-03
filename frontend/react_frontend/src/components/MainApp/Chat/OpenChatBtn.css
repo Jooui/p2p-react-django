@@ -9,7 +9,6 @@
     color: white;
     margin: 0 auto;
     z-index: 99999;
-    border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     display: flex;
     justify-content: center;
@@ -28,15 +27,29 @@
 
 @media screen and (max-width: 678px) {
     .open-chat-btn {
+        border-top-left-radius: 15px;
         left: 50%;
         transform: translateX(-50%);
     }
+
+    .open-chat-btn:hover {
+        transform: translateX(-50%) scale(1.01);
+    }
+    
+    .open-chat-btn:active {
+        transform: translateX(-50%) scale(1.02);
+    }    
 }
 
-.open-chat-btn:hover {
-    transform: translateX(-50%) scale(1.01);
+@media screen and (min-width: 679px) {
+    .open-chat-btn:hover {
+        transform: scale(1.01);
+    }
+    
+    .open-chat-btn:active {
+        transform: scale(1.02);
+    }
+     
 }
 
-.open-chat-btn:active {
-    transform: translateX(-50%) scale(1.02);
-}
+

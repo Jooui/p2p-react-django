@@ -100,7 +100,7 @@ const PanelAdminSwitch = () => {
         adminPanel === 'true' ? <PanelAdminMain /> :
           <>
             <main className="app-container">
-              <div className={"black-bg-responsive " + (showFriends ? "" : "hide")}></div>
+              <div className={"black-bg-responsive " +(  width < 1250  ? (showFriends ? "" : "hide"):"hide")} onClick={() => setShowFriends(false)}></div>
               <BackgroundSlider images={[bg1, bg2, bg4]} duration={30} transition={0.4} />
 
               <Header />
