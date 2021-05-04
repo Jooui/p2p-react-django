@@ -59,11 +59,11 @@
     /* width: 50px; */
 }
 
-.goAppBtn{
+.goAppBtn {
     border: none;
     outline: none;
     height: 80%;
-    background-color: transparent;    
+    background-color: transparent;
     border-radius: 500px;
     border: 2px solid #455364;
     color: #455364;
@@ -79,7 +79,42 @@
     cursor: pointer;
 }
 
-.goAppBtn:hover{
+.goAppBtn:hover {
     color: white;
     background-color: #455364;
+}
+
+.menu-btn {
+    display: none !important;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    border: 2px solid #455364;
+    transition: 0.1s !important;
+    color: #455364 !important;
+}
+
+.menu-btn:hover {
+    background-color: #455364 !important;
+    color: white !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .goAppBtn {
+        display: none;
+    }
+    .menu-btn {
+        display: inline-block !important;
+        margin-right: auto !important;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .adminHeader {
+        padding: 7px 15px 7px 30px;
+    }
+
+    .header_User {
+        margin-left: 0px;
+    }
 }

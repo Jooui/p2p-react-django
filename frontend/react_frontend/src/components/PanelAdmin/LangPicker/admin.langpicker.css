@@ -7,3 +7,9 @@
 .MuiMenu-paper {
     top: 60px !important;
 }
+
+@media screen and (max-width:600px) {
+    .custom-lang-picker {
+        display: none;
+    }
+}

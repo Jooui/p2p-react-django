@@ -2,16 +2,19 @@ import useUser from 'hooks/useUser'
 import './admin.header.css'
 import LangPicker from '../LangPicker/admin.langpicker'
 import { Badge, IconButton } from '@material-ui/core'
-import { NotificationsNoneOutlined } from '@material-ui/icons'
+import { MenuRounded, NotificationsNoneOutlined } from '@material-ui/icons'
+import GlobalContext from 'context/GlobalContext'
+import { useContext } from 'react'
 
 const AdminHeader = () => {
 
+    const {showSidebarAdmin, setShowSidebarAdmin} = useContext(GlobalContext)
     const { currentUser } = useUser()
-    console.log(currentUser);
 
     return (
         <>
             <header className="adminHeader">
+                <MenuRounded className="menu-btn" onClick={() => showSidebarAdmin ? setShowSidebarAdmin(false) : setShowSidebarAdmin(true)}/>
                 <GoAppBtn />
                 <IconButton aria-label="alerts" style={{marginRight:"20px"}}>
                     <Badge color="secondary" badgeContent={2} showZero >

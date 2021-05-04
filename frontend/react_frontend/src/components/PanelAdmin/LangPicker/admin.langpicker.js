@@ -58,7 +58,7 @@ export default function CustomizedSelects() {
         setLang(event.target.value);
     };
     return (
-        <div>
+        <div className="custom-lang-picker">
             <FormControl className={classes.margin}>
                 <InputLabel id="demo-customized-select-label"></InputLabel>
                 <Select

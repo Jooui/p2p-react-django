@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import BackgroundSlider from 'react-background-slider'
 import Header from './components/MainApp/layout/Header'
@@ -44,7 +44,6 @@ import MenuTransfer from "pages/MainApp/Transfer/Menu/MenuTransfer";
 import Sender from "pages/MainApp/Transfer/Sender/Sender";
 import Receiver from "pages/MainApp/Transfer/Receiver/Receiver";
 import PanelAdminMain from "pages/PanelAdmin/Main";
-import DisappearedLoading from "react-loadingg/lib/DisappearedLoading";
 import SubscriptionsPage from "pages/MainApp/Subscriptions/Subscriptions";
 import ScrollDownHomeBtn from "components/MainApp/ScrollDownHomeBtn/ScrollDownHomeBtn";
 import Chat from "pages/MainApp/Chat/Chat";
@@ -93,7 +92,6 @@ const PanelAdminSwitch = () => {
     setShowFriends(false)
   }, [location]);
 
-  console.log(showFriends);
 
   return (
     <>
@@ -154,15 +152,8 @@ const SwitchToPanelAdmin = () => {
 }
 
 const SocketIoConnection = () => {
-  // const [is] = useState()
   const { isAuthenticated, currentUser, socketIo, isSocketio, setIsSocketio } = useUser()
   if (isAuthenticated && currentUser && !isSocketio && socketIo.id) {
-    // setSocketIo(io("http://localhost:4200"))
-    //   let a = {...socketIo}
-    //   console.log("entraaa");
-    //   console.log(socketIo);
-    //   console.log(a);
-    //   console.log(a.id);
     socketIo.emit('newuser', { username: currentUser.username, socketid: socketIo.id })
     setIsSocketio(true)
   }

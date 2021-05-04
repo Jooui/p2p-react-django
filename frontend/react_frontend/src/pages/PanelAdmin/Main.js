@@ -9,12 +9,13 @@ import { useLocation } from 'react-router-dom'
 import AdminSubscriptions from './Subscriptions/admin.subscriptions';
 import AdminSettings from './Settings/admin.settings';
 import useUser from 'hooks/useUser';
+// import { useContext } from 'react';
 
 const PanelAdminMain = () => {
+    // const {showSidebarAdmin, setShowSidebarAdmin} = useContext(GlobalContext)
     const { currentUser } = useUser()
-    // const [loading, setLoading] = useState(true)
     const location = useLocation();
-    console.log(currentUser);
+
     if (currentUser) {
         if (!currentUser.is_admin) {
             window.localStorage.setItem('isPanelAdmin', false)
