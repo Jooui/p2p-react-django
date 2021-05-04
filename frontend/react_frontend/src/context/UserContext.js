@@ -5,7 +5,8 @@ import LoginService from '../services/login.service'
 import { io } from "socket.io-client";
 import ProfileService from 'services/profile.service';
 // const ENDPOINT = "https://3000-apricot-pinniped-h320hydn.ws-eu03.gitpod.io/";
-const ENDPOINT = "http://localhost:4200";
+import { NODEJS_URL } from "common/config";
+
 
 const Context = React.createContext({})
 
@@ -39,7 +40,7 @@ export function UserContextProvider({ children }) {
   const [friends, setFriends] = useState()
   const [adminPanel, setAdminPanel] = useState(localStorage.getItem('isPanelAdmin'))
 
-  if (!socketIo) setSocketIo(io("http://localhost:4200"))
+  if (!socketIo) setSocketIo(io(NODEJS_URL))
 
   useEffect(() => {
     if (user) {

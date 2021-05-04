@@ -1,5 +1,5 @@
 import axios from "axios";
-import API_URL from "common/config";
+import { DJANGO_URL } from "common/config";
 import JwtService from "./jwt.service";
 
 
@@ -10,11 +10,11 @@ export default function createHttp(secured = true) {
   if (secured) {
     return axios.create({
       headers: { "Authorization": `Token ${JwtService.getToken()}` },
-      baseURL: API_URL
+      baseURL: DJANGO_URL
     });
   } else {
     return axios.create({
-      baseURL: API_URL
+      baseURL: DJANGO_URL
     });
   }
 }

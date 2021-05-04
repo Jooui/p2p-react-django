@@ -16,7 +16,13 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from django.urls import path
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 urlpatterns = [
+    path('sentry-debug/', trigger_error),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('app.modules.authentication.urls', namespace='authentication')),
     url(r'^api/', include('app.modules.profiles.urls', namespace='profiles')),
