@@ -2,6 +2,7 @@ import './Receiver.css'
 import React, { useEffect, useState } from 'react';
 import usePeer from '../../../../hooks/usePeer';
 import { FileCopyOutlined } from '@material-ui/icons';
+import copyToClipboard from 'utils/CopyToClipboard';
 
 let barProgress;
 let spanProgress;
@@ -116,7 +117,7 @@ const Receiver = () => {
         <div className="receiver-container">
             <div className="header-top">
                 <span className="title">Receiver | My room</span>
-                <div className="join-room-code" onClick={() => { navigator.clipboard.writeText(peer.id) }}>
+                <div className="join-room-code" onClick={() => { copyToClipboard(peer.id) }}>
                     <label id="room-code">Code: </label>
                     <span className="code">{peer.id}</span>
                     <FileCopyOutlined />

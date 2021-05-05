@@ -198,3 +198,9 @@
         width: 50%;
     }
 }
+
+@media screen and (max-width:678px) {
+    .data-container .left-side .left-side__header {
+        flex-direction: column;
+    }
+}

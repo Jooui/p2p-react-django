@@ -26,3 +26,9 @@
 .receiver-content{
     flex: 1;
 }
+
+@media screen and (max-width:678px) {
+    .receiver-container .header-top {
+        flex-direction: column;
+    }
+}
