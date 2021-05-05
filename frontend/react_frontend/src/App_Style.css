@@ -30,7 +30,7 @@
     /* overflow-x: hidden; */
 }
 
-@media screen and (max-width: 910px){
+@media screen and (max-width: 910px) {
     .main-container {
         padding: 45px 50px 50px 50px;
     }
@@ -40,10 +40,17 @@
     display: none;
 }
 
-.black-bg-responsive{
+.black-bg-responsive {
     position: fixed;
     width: 100vw;
     height: 100vh;
     background-color: rgba(24, 24, 24, 0.918);
     z-index: 9999;
-  }
+}
+
+.fullscreen-comp {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}

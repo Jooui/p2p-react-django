@@ -8,7 +8,18 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
 
+const switchToApp = () => {
+    window.localStorage.setItem('isPanelAdmin', false)
+    window.location.href = "/"
+}
 
+const GoAppSidebar = () => {
+    return (
+        <button className="goAppBtn goAppBtn--sidebar" onClick={switchToApp}>
+            GO TO APP
+        </button>
+    )
+}
 
 const AdminSidebar = () => {
     const { width } = useWindowDimensions()
@@ -61,6 +72,7 @@ const AdminSidebar = () => {
                     <Link to={"/"} className={"nav-item " + (currentPage === "/chats" ? " active" : "")}>
                         <ChatOutlined /> Chats
                     </Link>
+                    {width < 1200 ? <GoAppSidebar /> : null}
                 </nav>
             </section>
         </ClickAwayListener>)

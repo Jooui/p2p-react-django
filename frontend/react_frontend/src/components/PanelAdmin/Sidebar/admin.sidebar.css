@@ -40,6 +40,8 @@
 }
 
 .adminSidebar__nav {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     padding: 10px 20px;
 }
@@ -113,4 +115,17 @@
 .sidebar-menu-btn:hover {
     background-color: #637b97 !important;
     color: white !important;
+}
+
+.goAppBtn--sidebar {
+    margin: 20px auto;
+    color: #787f81;
+    border: 2px solid #787f81;
+    margin-top: auto;
+}
+
+.goAppBtn--sidebar:hover{
+    background-color: #787f81;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.281);
 }

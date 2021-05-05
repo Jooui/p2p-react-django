@@ -1,4 +1,4 @@
-import { CameraAlt, ChatBubbleOutline, ChatOutlined, FiberManualRecord, Send } from '@material-ui/icons';
+import { CameraAlt, ChatBubbleOutline, ChatOutlined, CloseRounded, FiberManualRecord, Send } from '@material-ui/icons';
 import useUser from 'hooks/useUser';
 import { useEffect, useState } from 'react';
 import BoxLoading from 'react-loadingg/lib/BoxLoading';
@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import MessageLine from 'components/MainApp/Chat/MessageLine'
 import ProfileService from 'services/profile.service';
 import './Chat.css'
-
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { useHistory } from 'react-router-dom';
 
 const Chat = ({ params }) => {
     const { socketIo } = useUser()
@@ -18,7 +19,10 @@ const Chat = ({ params }) => {
     const { currentUser, DB } = useUser()
     const [isLoaded, setIsLoaded] = useState(false)
     const [receiver, setReceiver] = useState()
-    // const chatWrapper = document.getElementById('chat-wrapper')
+    const { width } = useWindowDimensions()
+
+    const history = useHistory();
+    const handleClickClose = () => history.push('/');
 
 
 
@@ -82,11 +86,13 @@ const Chat = ({ params }) => {
     return (
         <>
             {
-                receiver && currentUser ? <div className="chat-container">
+                receiver && currentUser ? <div className={"chat-container " + (width > 678 ? '' : 'fullscreen-comp')}>
                     <div className="chat-header">
                         <ChatOutlined />
                         <span className="chat-username">{receiver.username}</span>
                         <div className="chat-status"><FiberManualRecord className={"user-status " + (receiver.online ? 'user-status--connected' : '')} /></div>
+                        {width > 678 ? null : <CloseRounded style={{marginLeft:"auto"}} onClick={handleClickClose}/>}
+                        
                     </div>
                     <section className="chat-wrapper" id="chat-wrapper">
                         {

@@ -5,18 +5,19 @@ import { Badge, IconButton } from '@material-ui/core'
 import { MenuRounded, NotificationsNoneOutlined } from '@material-ui/icons'
 import GlobalContext from 'context/GlobalContext'
 import { useContext } from 'react'
+import useWindowDimensions from 'hooks/useWindowDimensions'
 
 const AdminHeader = () => {
 
-    const {showSidebarAdmin, setShowSidebarAdmin} = useContext(GlobalContext)
+    const { showSidebarAdmin, setShowSidebarAdmin } = useContext(GlobalContext)
     const { currentUser } = useUser()
-
+    const { width } = useWindowDimensions()
     return (
         <>
             <header className="adminHeader">
-                <MenuRounded className="menu-btn" onClick={() => showSidebarAdmin ? setShowSidebarAdmin(false) : setShowSidebarAdmin(true)}/>
-                <GoAppBtn />
-                <IconButton aria-label="alerts" style={{marginRight:"20px"}}>
+                <MenuRounded className="menu-btn" onClick={() => showSidebarAdmin ? setShowSidebarAdmin(false) : setShowSidebarAdmin(true)} />
+                {width > 1200 ? <GoAppBtn /> : null}
+                <IconButton aria-label="alerts" style={{ marginRight: "20px" }}>
                     <Badge color="secondary" badgeContent={2} showZero >
                         <NotificationsNoneOutlined />
                     </Badge>

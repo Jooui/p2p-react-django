@@ -82,6 +82,12 @@ const LoginSwitch = () => {
   )
 }
 
+const FullscreenComponent = () => {
+  return (
+    <div className="fullscreen-comp_"></div>
+  )
+}
+
 const PanelAdminSwitch = () => {
   const { adminPanel, isAuthenticated } = useUser()
   const { width } = useWindowDimensions();
@@ -110,6 +116,7 @@ const PanelAdminSwitch = () => {
                 }
                 <LoginSwitch />
                 <section className="main-content">
+                  <FullscreenComponent />
                   <SocketIoConnection />
                   <Switch>
                     <Route exact path="/"><MenuTransfer /></Route>

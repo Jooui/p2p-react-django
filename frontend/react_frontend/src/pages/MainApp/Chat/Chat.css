@@ -16,7 +16,7 @@
     border-bottom: 1px solid lightgray;
     color: rgb(35, 35, 35);
     display: flex;
-    padding: 0px 50px 0px 20px;
+    padding: 0px 5px 0px 20px;
     box-sizing: border-box;
     align-items: center;
 }
@@ -180,5 +180,11 @@
     .chat-footer .send-btn-chat {
         width: 40px;
         height: 40px;
+    }
+
+    .chat-container {
+        width: 100%;
+        border-radius: unset;
+        padding-bottom: 80px;
     }
 }
