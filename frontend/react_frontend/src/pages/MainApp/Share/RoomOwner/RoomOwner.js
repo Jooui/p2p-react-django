@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FileCopyOutlined, ArrowForwardIos } from '@material-ui/icons';
 import './RoomOwner.css';
 import usePeer from '../../../../hooks/usePeer';
+import copyToClipboard from 'utils/CopyToClipboard';
 // import copyToClipboard from 'utils/copyToClipboard';
 
 
@@ -117,7 +118,7 @@ const RoomOwner = () => {
   return (
     <div className="anonShare-container">
       <h1>Anonymous Share</h1>
-      <div className="join-code" onClick={() => { navigator.clipboard.writeText(peer.id) }}>
+      <div className="join-code" onClick={() => { copyToClipboard(peer.id) }}>
         <label id="room-code">Room Code: {peer.id}</label>
         <span className="code"></span>
         <FileCopyOutlined />
