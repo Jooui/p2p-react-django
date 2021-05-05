@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useContext, useEffect, useState } from 'react';
 import GlobalContext from 'context/GlobalContext';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 
 
 
 const AdminSidebar = () => {
+    const { width } = useWindowDimensions()
     const location = useLocation();
     const currentPage = location.pathname
     const { showSidebarAdmin, setShowSidebarAdmin } = useContext(GlobalContext)
@@ -21,12 +23,12 @@ const AdminSidebar = () => {
 
     useEffect(() => {
         setShowSidebarAdmin(false)
-    },[location])
-    
+    }, [location])
+
     return (
 
         <ClickAwayListener onClickAway={(e) => handleOpenSidebar(e)}>
-            <section className={"adminSidebar " + (showSidebarAdmin ? '' : 'hide-sidebar')} >
+            <section className={"adminSidebar " + ( width > 1200 ? '' : (showSidebarAdmin ? '' : 'hide-sidebar'))} >
                 <MenuOutlined className="menu-btn sidebar-menu-btn" onClick={() => { showSidebarAdmin ? setShowSidebarAdmin(false) : setShowSidebarAdmin(true) }} />
                 <div className="adminSidebar__header">
                     <h1>Peer-App</h1>
