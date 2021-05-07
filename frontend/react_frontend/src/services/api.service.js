@@ -1,7 +1,5 @@
 import createHttp from './http'
 
-// const http = createHttp(false); // unsecured
-
 let http = createHttp(false);
 
 const ApiService = {
