@@ -11,3 +11,4 @@ psycopg2-binary
 Faker
 django-cors-headers
 django-extensions==3.1.0
+sentry-sdk
