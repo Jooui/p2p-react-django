@@ -42,11 +42,47 @@ import OpenChatBtn from "components/MainApp/Chat/OpenChatBtn";
 
 
 const ClientMain = () => {
-    const { isAuthenticated } = useUser()
+    const { isAuthenticated, socketIo } = useUser()
     const { width } = useWindowDimensions();
-    const { showFriends, setShowFriends } = useContext(GlobalContext)
+    const { showFriends, setShowFriends, notifications, setNotifications, countNotifications } = useContext(GlobalContext)
     let location = useLocation();
     useEffect(() => setShowFriends(false), [location]);
+
+    const chatsModel = [
+        {
+            user: "joel",
+            messages: [
+            ]
+        }
+    ]
+
+    useEffect(() => {
+        let loc = location
+        socketIo.on('receiveMsg', function (msg) {
+            // console.log(msg);
+            let path = window.location.pathname.split('/')
+
+            if (path[1] != "chat") {
+                let chats = window.localStorage.getItem('chats')
+                console.log(chats);
+                if (chats) {
+                    console.log("entra if");
+                    let chatsArr = JSON.parse(chats)
+                    const index = chatsArr.map(e => e.user).indexOf(msg.sender);
+                    chatsArr[index].messages = [...chatsArr[index].messages,msg];
+
+                } else {
+                    console.log("entra ielse");
+                    window.localStorage.setItem('chats', JSON.stringify([{ user: msg.sender, messages: [msg] }]))
+                }
+                let arr = [...JSON.parse(window.localStorage.getItem('notifications'))]
+                arr.push({state: "no_readed", msg:"New message of "+ msg.sender})
+                setNotifications(arr)
+            }
+
+
+        });
+    }, [])
 
     return (
         <>

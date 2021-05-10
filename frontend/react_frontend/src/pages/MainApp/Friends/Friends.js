@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 
 import './Friends.css'
-import { ChatOutlined, PeopleOutlineOutlined, PersonOutlineOutlined, SearchRounded, StarBorderRounded } from '@material-ui/icons';
+import { ChatOutlined, NotificationsActiveOutlined, NotificationsActiveRounded, NotificationsNoneOutlined, PeopleOutlineOutlined, PersonOutlineOutlined, SearchRounded, StarBorderRounded } from '@material-ui/icons';
 
 // Import sections
 import SectionFriends from './SectionFriends';
@@ -11,6 +11,8 @@ import SectionFavorites from './SectionFavorites';
 import useUser from 'hooks/useUser';
 import GlobalContext from 'context/GlobalContext';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import SectionNotifications from './Notifications/SectionNotifications';
+import { Badge } from '@material-ui/core';
 
 let renderPage = (page) => {
   switch (page) {
@@ -22,6 +24,8 @@ let renderPage = (page) => {
       return <SectionFavorites />
     case "search":
       return <SectionSearch />
+    case "notifications":
+      return <SectionNotifications />
     default:
       return <SectionFriends />
   }
@@ -30,7 +34,7 @@ let renderPage = (page) => {
 const Friends = () => {
   const [page, setPage] = useState("friends");
   const { isAuthenticated, currentUser } = useUser()
-  const { showFriends, setShowFriends } = useContext(GlobalContext)
+  const { showFriends, setShowFriends, notifications, countNotifications } = useContext(GlobalContext)
   const { width } = useWindowDimensions();
 
 
@@ -46,42 +50,28 @@ const Friends = () => {
               <div className="modal-svg">
                 <ChatOutlined />
               </div>
+
               <div className={"friends-nav-item " + (page === "friends" ? 'active' : '')} onClick={() => setPage('friends')}>
                 <PersonOutlineOutlined />
               </div>
-              {/* <div className={"friends-nav-item "+(page === "groups" ? 'active':'')} onClick={() => setPage('groups')}>
-          <PeopleOutlineOutlined />
-        </div>
-        <div className={"friends-nav-item "+(page === "favorites" ? 'active':'')} onClick={() => setPage('favorites')}>
-          <StarBorderRounded />
-        </div> */}
+
               <div className={"friends-nav-item " + (page === "search" ? 'active' : '')} onClick={() => setPage('search')}>
                 <SearchRounded />
+              </div>
+
+              <div className={"friends-nav-item " + (page === "notifications" ? 'active' : '')} onClick={() => setPage('notifications')}>
+                <Badge color="secondary" badgeContent={countNotifications} >
+                  <NotificationsActiveOutlined />
+                </Badge>
               </div>
             </nav>
             <section className="friends-right">
               <div className="friends-right-title">
                 <h1>Users</h1>
-                {/* <input type="text" name="searchbar_friends" id="searchbar_friends" className="searchbar_friends" placeholder="Search.." /> */}
               </div>
               <section className="friends-wrapper">
-                {/* <SectionFriends /> */}
                 {
-                  // () => {
-                  //   if (page === "friends") {
-                  //     return (<SectionFriends />)
-                  //   } else if (page === "groups") {
-                  //     return <SectionGroups />
-                  //   } else if (page === "favorites") {
-                  //     return <SectionFavorites />
-                  //   } else if (page === "search") {
-                  //     return <SectionSearch />
-                  //   } else {
-                  //     return <SectionFriends />
-                  //   }
-                  // }
                   renderPage(page)
-
                 }
               </section>
 

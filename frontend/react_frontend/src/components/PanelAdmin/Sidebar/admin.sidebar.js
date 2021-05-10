@@ -39,8 +39,9 @@ const AdminSidebar = () => {
     return (
 
         <ClickAwayListener onClickAway={(e) => handleOpenSidebar(e)}>
-            <section className={"adminSidebar " + ( width > 1200 ? '' : (showSidebarAdmin ? '' : 'hide-sidebar'))} >
-                <MenuOutlined className="menu-btn sidebar-menu-btn" onClick={() => { showSidebarAdmin ? setShowSidebarAdmin(false) : setShowSidebarAdmin(true) }} />
+            <section className={"adminSidebar " + (width > 1200 ? '' : (showSidebarAdmin ? '' : 'hide-sidebar'))} >
+                <MenuOutlined className="menu-btn sidebar-menu-btn"
+                    onClick={() => { showSidebarAdmin ? setShowSidebarAdmin(false) : setShowSidebarAdmin(true) }} />
                 <div className="adminSidebar__header">
                     <h1>Peer-App</h1>
                     <h3>Admin Panel</h3>

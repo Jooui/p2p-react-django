@@ -73,10 +73,23 @@ const Chat = ({ params }) => {
         })
     }, [username])
 
+    const chatsModel = [
+        { 
+            user:"joel",
+            messages: [
+            ]
+        }
+    ]
 
     useEffect(() => {
         if (!isLoaded) {
             socketIo.on('receiveMsg', function (msg) {
+                console.log(msg);
+                let chats = window.localStorage.getItem('chats')
+                if (chats) {
+
+                }
+
                 setIsLoaded(true)
                 pushMsg(msg)
             });
