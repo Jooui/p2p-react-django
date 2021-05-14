@@ -11,10 +11,6 @@ const Sender = () => {
     const { peer } = usePeer()
     let { room } = useParams();
     const [conn, setConn] = useState(null)
-    const [isSended, setIsSended] = useState(false)
-    // const [file, setFile] = useState()
-
-
     const BYTES_PER_CHUNK = 40000;
     let file;
     let currentChunk;
@@ -24,7 +20,6 @@ const Sender = () => {
     // AFTER RENDER
     useEffect(() => {
         fileInput = document.getElementById('input-file-sender')
-        console.log(fileInput);
         if (!conn) setConn(peer.connect(room))
         barProgress = document.getElementById('barProgress')
         spanProgress = document.getElementById('spanProgress')
@@ -53,17 +48,15 @@ const Sender = () => {
     }
 
     let handleStart = () => {
+        spanProgress.innerHTML = '0%'
+        barProgress.style.width = '0%'
         currentChunk = 0;
         // send some metadata about our file to the receiver
-        if ( !isSended ){
-            setIsSended(true)
-            conn.send(JSON.stringify({
-                fileName: file.name,
-                fileSize: file.size
-            }));
-            readNextChunk();
-        }
-        
+        conn.send(JSON.stringify({
+            fileName: file.name,
+            fileSize: file.size
+        }));
+        readNextChunk();
     }
 
 
