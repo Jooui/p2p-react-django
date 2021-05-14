@@ -1,8 +1,9 @@
 import './Receiver.css'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import usePeer from '../../../../hooks/usePeer';
 import { FileCopyOutlined } from '@material-ui/icons';
 import copyToClipboard from 'utils/CopyToClipboard';
+import GlobalContext from 'context/GlobalContext'
 
 let barProgress;
 let spanProgress;
@@ -18,21 +19,25 @@ const Receiver = () => {
     let bytesReceived;
     let downloadInProgress = false;
 
+    const { receiverConnectionLoaded, setReceiverConnectionLoaded } = useContext(GlobalContext)
 
     useEffect(() => {
         barProgress = document.getElementById('barProgress')
         spanProgress = document.getElementById('spanProgress')
 
-        peer.on('connection', function (conn) {
-            setClients([...clients, conn])
-            conn.on('data', data => {
-                if (downloadInProgress === false) {
-                    startDownload(data);
-                } else {
-                    progressDownload(data);
-                }
+        if (!receiverConnectionLoaded) {
+            peer.on('connection', function (conn) {
+                setClients([...clients, conn])
+                conn.on('data', data => {
+                    if (downloadInProgress === false) {
+                        startDownload(data);
+                    } else {
+                        progressDownload(data);
+                    }
+                });
             });
-        });
+        }
+        setReceiverConnectionLoaded(true)
     }, [])
 
 

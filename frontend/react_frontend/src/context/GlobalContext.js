@@ -8,7 +8,8 @@ export function GlobalContextProvider({ children }) {
     const [showSidebarAdmin, setShowSidebarAdmin] = useState(true)
     const [notifications, setNotifications] = useState([])
     const [countNotifications, setCountNotifications] = useState()
-
+    const [receiverConnectionLoaded, setReceiverConnectionLoaded] = useState(false)
+    
     useEffect(() => {
         window.localStorage.setItem('notifications', JSON.stringify(notifications))
         let count = 0
@@ -18,7 +19,7 @@ export function GlobalContextProvider({ children }) {
         // console.log("entra", countNotifications);
     },[notifications])
 
-    return <GlobalContext.Provider value={{ showFriends, setShowFriends, showSidebarAdmin, setShowSidebarAdmin, notifications, setNotifications, countNotifications }}>
+    return <GlobalContext.Provider value={{ showFriends, setShowFriends, showSidebarAdmin, setShowSidebarAdmin, notifications, setNotifications, countNotifications, receiverConnectionLoaded, setReceiverConnectionLoaded }}>
         {children}
     </GlobalContext.Provider>
 }
