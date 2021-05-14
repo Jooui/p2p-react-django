@@ -37,7 +37,7 @@
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .black-bg-responsive {
