@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import './Header.css';
 
+import logo from 'assets/Logo.png'
 import useUser from 'hooks/useUser'
 
 const Header = () => {
@@ -8,7 +9,7 @@ const Header = () => {
 
   return (
     <header className="main-header">
-      <Link to="/" className="titleApp">Peer-App</Link>
+      <Link to="/" className="titleApp"><img src={logo} alt="logo of website"/></Link>
       <nav>
         <div className="header-item">
           <Link to="/">Home</Link>
