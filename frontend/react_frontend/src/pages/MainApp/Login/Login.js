@@ -71,22 +71,22 @@ const Login = () => {
       {
         section === 'login' ?
           <form className="loginForm" onSubmit={handleSubmit}>
-            <input type="email" name="login_email" placeholder="Email.." onChange={(e) => setEmail(e.target.value)} value={email} />
-            <input type="password" name="login_email" placeholder="Password.." onChange={(e) => setPassword(e.target.value)} value={password} />
-            <button className="login-btn">LOGIN</button>
+            <input id="input_login_email" type="email" name="login_email" placeholder="Email.." onChange={(e) => setEmail(e.target.value)} value={email} />
+            <input id="input_login_password" type="password" name="login_email" placeholder="Password.." onChange={(e) => setPassword(e.target.value)} value={password} />
+            <button className="login-btn" id="login-btn">LOGIN</button>
           </form> :
           <form className="loginForm" onSubmit={handleRegister}>
-            <input type="text" name="login_email" placeholder="Username.." onChange={(e) => setUsername(e.target.value)} value={username} />
-            <input type="email" name="login_email" placeholder="Email.." onChange={(e) => setEmail(e.target.value)} value={email} />
-            <input type="password" name="login_email" placeholder="Password.." onChange={(e) => setPassword(e.target.value)} value={password} />
-            <button className="login-btn">REGISTER</button>
+            <input id="input_register_username" type="text" name="login_email" placeholder="Username.." onChange={(e) => setUsername(e.target.value)} value={username} />
+            <input id="input_register_email" type="email" name="login_email" placeholder="Email.." onChange={(e) => setEmail(e.target.value)} value={email} />
+            <input id="input_register_password" type="password" name="login_email" placeholder="Password.." onChange={(e) => setPassword(e.target.value)} value={password} />
+            <button className="login-btn" id="register-btn">REGISTER</button>
           </form>
       }
 
       <section className="login-links">
         {
           section === 'login' ?
-            <a href="#ee" onClick={() => { setSection('register') }} className="login-link">Create an account</a> :
+            <a href="#ee" onClick={() => { setSection('register') }} id="register-link" className="login-link">Create an account</a> :
             <a href="#ee" className="login-link" onClick={() => { setSection('login') }}>I've already have an account</a>
         }
         <a href="#ee" className="login-link">I've forgotten my password</a>
