@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import GlobalContext from 'context/GlobalContext';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import useWindowDimensions from 'hooks/useWindowDimensions';
-
+import logo from 'assets/Logo.png'
 
 const switchToApp = () => {
     window.localStorage.setItem('isPanelAdmin', false)
@@ -43,7 +43,7 @@ const AdminSidebar = () => {
                 <MenuOutlined className="menu-btn sidebar-menu-btn"
                     onClick={() => { showSidebarAdmin ? setShowSidebarAdmin(false) : setShowSidebarAdmin(true) }} />
                 <div className="adminSidebar__header">
-                    <h1>Peer-App</h1>
+                    <h1><img src={logo} alt="Logo of app in panel admin"/></h1>
                     <h3>Admin Panel</h3>
                 </div>
                 <nav className="adminSidebar__nav">

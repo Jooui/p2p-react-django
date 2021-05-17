@@ -12,6 +12,7 @@
 }
 
 .adminSidebar__header {
+    padding-top: 20px;
     width: 100%;
     height: 130px;
     box-sizing: border-box;
@@ -22,6 +23,7 @@
 }
 
 .adminSidebar__header h1 {
+    width: 80%;
     color: white;
     font-size: 34px;
     text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.479);
@@ -30,10 +32,17 @@
     white-space: nowrap;
 }
 
+.adminSidebar__header h1 img {
+    width: 100%;
+}
+
 .adminSidebar__header h3 {
     color: white;
     font-size: 16px;
     margin-top: -5px;
+    margin-left: -25px;
+    align-self: center;
+
     text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.479);
     cursor: pointer;
     white-space: nowrap;
