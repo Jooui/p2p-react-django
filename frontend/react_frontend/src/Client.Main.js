@@ -21,7 +21,6 @@ import useUser from './hooks/useUser'
 import GlobalContext from 'context/GlobalContext';
 
 // <<<<<<<< Pages >>>>>>>>
-import RoomOwner from "pages/MainApp/Share/RoomOwner/RoomOwner";
 import UserProfile from "pages/MainApp/Profile/UserProfile";
 import NotFound from "pages/MainApp/404/NotFound";
 import MenuTransfer from "pages/MainApp/Transfer/Menu/MenuTransfer";
@@ -138,7 +137,6 @@ const Routes = () => {
             <Route path="/about"><About /></Route>
             {/* <Route path="/login"></Route> */}
             <Redirect from='/login' to='/' />
-            <Route path="/myroom"><RoomOwner /></Route>
             <Route path="/receiver"><Receiver /></Route>
             <Route path="/room/:room"><Sender /></Route>
             <Route path="/profile/:username"><UserProfile /></Route>
