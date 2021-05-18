@@ -51,7 +51,7 @@
 
 }
 
-@media screen and (max-width: 920px){
+@media screen and (max-width: 1155px){
   .main-header{
     flex-direction: column;
     padding: 0px;

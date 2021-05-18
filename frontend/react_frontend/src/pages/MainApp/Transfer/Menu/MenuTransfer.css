@@ -127,6 +127,12 @@
 }
 
 
+@media screen and (min-width:500px){
+    .card-menu-transfer{
+        min-height: 450px;
+    }
+}
+
 @media screen and (max-width:950px){
     .menu-transfer-container{
         flex-direction: column;

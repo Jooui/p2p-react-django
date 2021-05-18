@@ -136,7 +136,8 @@ const Routes = () => {
             <Route exact path="/"><MenuTransfer /></Route>
             <Route path="/admin"><SwitchToPanelAdmin /></Route>
             <Route path="/about"><About /></Route>
-            <Route path="/login"><Login /></Route>
+            {/* <Route path="/login"></Route> */}
+            <Redirect from='/login' to='/' />
             <Route path="/myroom"><RoomOwner /></Route>
             <Route path="/receiver"><Receiver /></Route>
             <Route path="/room/:room"><Sender /></Route>

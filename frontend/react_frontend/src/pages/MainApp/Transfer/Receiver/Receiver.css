@@ -1,4 +1,4 @@
-.receiver-container{
+.receiver-container {
     max-height: 530px;
     height: 100%;
     background-color: white;
@@ -11,24 +11,82 @@
     padding: 25px;
 }
 
-.receiver-container .header-top{
+.receiver-container .header-top {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.receiver-container .header-top .title{
+.receiver-container .header-top .title {
     font-size: 1.5em;
     font-weight: 500;
 }
 
-.receiver-content{
+.receiver-content {
     flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
 }
 
 @media screen and (max-width:678px) {
     .receiver-container .header-top {
         flex-direction: column;
     }
+}
+
+.incomming-file-container {
+    width: 120px;
+    height: 150px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.incomming-file-container > span {
+    text-align: center;
+}
+
+.incomming-file-box {
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.incomming-file-box span {
+    z-index: 5;
+}
+
+.incomming-file-box .box-percent {
+    margin-bottom: -20px;
+}
+
+.incomming-file-box .box-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(49, 49, 49);
+}
+
+.box-bg-progress{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(231, 231, 231);
+    left: 0;
+}
+
+.box-bg-complete {
+    background-color: #dc2b33;
 }

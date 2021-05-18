@@ -11,13 +11,13 @@ let spanProgress;
 const Receiver = () => {
     const { peer } = usePeer();
     const [clients, setClients] = useState([]);
-    let bytesReceived2 = 0;
-    let downSpeed = 0
-    let lastDownTime = 0;
+    const [files, setFiles] = useState([]);
     let incomingFileInfo;
     let incomingFileData;
     let bytesReceived;
     let downloadInProgress = false;
+
+    let currentDownloading = ""
 
     const { receiverConnectionLoaded, setReceiverConnectionLoaded } = useContext(GlobalContext)
 
@@ -43,24 +43,19 @@ const Receiver = () => {
 
     const startDownload = (data) => {
         incomingFileInfo = JSON.parse(data.toString());
+        let fileMeta = { ...incomingFileInfo, ext: incomingFileInfo.fileName.split('.').pop(), progress: 0 }
+        currentDownloading = incomingFileInfo.fileName
+        setFiles([...files,fileMeta])
         incomingFileData = [];
         bytesReceived = 0;
         downloadInProgress = true;
     }
 
     const progressDownload = (data) => {
-
-        let endTime = (new Date()).getTime();
-        downSpeed = ((incomingFileInfo.fileSize - bytesReceived2) * 1000) / ((endTime - lastDownTime) * 1024);
-        bytesReceived2 = incomingFileInfo.fileSize;
-        lastDownTime = endTime;
-
-        console.log(downSpeed);
-        console.log(barProgress);
         bytesReceived += data.byteLength;
         incomingFileData.push(data);
         barProgress.style.width = ((bytesReceived / incomingFileInfo.fileSize) * 100).toFixed(2) + '%'
-        spanProgress.innerHTML =((bytesReceived / incomingFileInfo.fileSize) * 100).toFixed(2) + '%'
+        spanProgress.innerHTML = ((bytesReceived / incomingFileInfo.fileSize) * 100).toFixed(2) + '%'
         if (bytesReceived === incomingFileInfo.fileSize) {
             endDownload();
         }
@@ -95,7 +90,21 @@ const Receiver = () => {
                 </div>
             </div>
 
-            <div className="receiver-content"></div>
+            <div className="receiver-content">
+                {
+                    files.map(e =>
+                        <div className="incomming-file-container" key={e.fileName}>
+                            <article id={e.fileName} className="incomming-file-box">
+                                <div 
+                                // className={"box-bg-progress "+ (e.progress == 100 ? "box-bg-complete" : "")}
+                                style={{width:(e.progress + "%")}}></div>
+                                <span className="box-title">{e.ext}</span>
+                                {/* <span className="box-percent">{e.progress}%</span> */}
+                            </article>
+                            <span>{e.fileName}</span>
+                        </div>)
+                }
+            </div>
             <hr className="separator" />
             <div className="bottom-sender">
                 <div className="progress-percent">
