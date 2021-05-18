@@ -74,24 +74,3 @@
     box-shadow: 0px 0px 3px rgba(110, 110, 110, 0.404);
     font-size: 1.05em;
 }
-
-.logoutBtn{
-    height: 40px;
-    background-color: #e25b4b;
-    color: white;
-    border-radius: 500px;
-    outline: none;
-    cursor: pointer;
-    border: none;
-    min-width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Poppins;
-    font-weight: bold;
-    font-size: 1em;
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    transition: 0.1s;
-}

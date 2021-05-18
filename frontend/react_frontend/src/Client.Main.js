@@ -64,13 +64,13 @@ const ClientMain = () => {
                 if (chats) {
                     let chatsArr = JSON.parse(chats)
                     const index = chatsArr.map(e => e.user).indexOf(msg.sender);
-                    chatsArr[index].messages = [...chatsArr[index].messages,msg];
+                    chatsArr[index].messages = [...chatsArr[index].messages, msg];
 
                 } else {
                     window.localStorage.setItem('chats', JSON.stringify([{ user: msg.sender, messages: [msg] }]))
                 }
                 let arr = [...JSON.parse(window.localStorage.getItem('notifications'))]
-                arr.push({state: "no_readed", msg:"New message of "+ msg.sender})
+                arr.push({ state: "no_readed", msg: "New message of " + msg.sender })
                 setNotifications(arr)
             }
         });
@@ -130,13 +130,17 @@ const LoginSwitch = () => {
 
 // Main App routes
 const Routes = () => {
+    const { width } = useWindowDimensions();
     return (
         <Switch>
             <Route exact path="/"><MenuTransfer /></Route>
             <Route path="/admin"><SwitchToPanelAdmin /></Route>
             <Route path="/about"><About /></Route>
-            {/* <Route path="/login"></Route> */}
-            <Redirect from='/login' to='/' />
+            {
+                width < 1271 ?
+                    <Route path="/login"><Login /></Route> :
+                    <Redirect from='/login' to='/' />
+            }
             <Route path="/receiver"><Receiver /></Route>
             <Route path="/room/:room"><Sender /></Route>
             <Route path="/profile/:username"><UserProfile /></Route>

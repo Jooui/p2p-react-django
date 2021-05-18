@@ -7,8 +7,9 @@ import { BlockLoading } from 'react-loadingg';
 import useUser from 'hooks/useUser';
 import InfoProfile from './InfoProfile';
 import EditProfile from './EditProfile';
-import { KeyboardBackspace } from '@material-ui/icons';
+import { ExitToAppRounded, KeyboardBackspace } from '@material-ui/icons';
 import SemipolarLoading from 'react-loadingg/lib/SemipolarLoading';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 // import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 const UserProfile = () => {
@@ -17,6 +18,7 @@ const UserProfile = () => {
     const [loadingImg, setLoadingImg] = useState(true);
     const [profile, setProfile] = useState()
     const [section, setSection] = useState('info')
+    const { width } = useWindowDimensions();
     let { username } = useParams();
 
     useEffect(() => {
@@ -70,7 +72,7 @@ const UserProfile = () => {
                         }
                         {
                             currentUser.username === profile.username ?
-                            <button className="logoutBtn" onClick={logout}>Logout</button>
+                            <button className="logoutBtn" onClick={logout}>{width > 620 ? "Logout" : <ExitToAppRounded />}</button>
                             :null
                         }
 
