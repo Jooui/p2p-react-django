@@ -204,3 +204,58 @@
         flex-direction: column;
     }
 }
+
+.select-file-btn {
+    /* margin: auto 0; */
+    margin: 30px 0px auto 0px;
+    align-self: center;
+    padding: 5px 20px;
+    width: 200px;
+    height: 36px;
+    background-color: #dc2b33;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.1s;
+}
+
+.select-file-btn:hover {
+    box-shadow: 0px 0px 2px #dc2b33;
+}
+
+#input-file-sender {
+    display: none;
+}
+
+.file-selected-container {
+    border-bottom: 1px solid lightgray;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.file-selected-container span {
+    margin: 0 15px
+}
+
+.file-selected-title {
+    flex: 1;
+}
+
+.file-selected-remove-btn { 
+    width: 40px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: #dc2b33;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

@@ -1,8 +1,9 @@
-import { FileCopyOutlined } from '@material-ui/icons'
+import { Close, FileCopyOutlined, PublishRounded } from '@material-ui/icons'
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react'
 import './Sender.css'
 import usePeer from 'hooks/usePeer';
+import { Button } from '@material-ui/core';
 
 let barProgress;
 let spanProgress;
@@ -11,8 +12,9 @@ const Sender = () => {
     const { peer } = usePeer()
     let { room } = useParams();
     const [conn, setConn] = useState(null)
+    const [file, setFile] = useState()
     const BYTES_PER_CHUNK = 40000;
-    let file;
+    // let file;
     let currentChunk;
     let fileInput;
     let fileReader = new FileReader();
@@ -23,7 +25,7 @@ const Sender = () => {
         if (!conn) setConn(peer.connect(room))
         barProgress = document.getElementById('barProgress')
         spanProgress = document.getElementById('spanProgress')
-    },[])
+    }, [])
 
     const readNextChunk = () => {
         let start = BYTES_PER_CHUNK * currentChunk;
@@ -36,7 +38,7 @@ const Sender = () => {
         currentChunk++;
         let bytesPerChunk = ((BYTES_PER_CHUNK * currentChunk / file.size) * 100).toFixed(2)
         spanProgress.innerHTML = (bytesPerChunk > 100 ? 100 : bytesPerChunk) + '%'
-        barProgress.style.width = (bytesPerChunk > 100 ? 100 : bytesPerChunk)+ '%'
+        barProgress.style.width = (bytesPerChunk > 100 ? 100 : bytesPerChunk) + '%'
 
         if (BYTES_PER_CHUNK * currentChunk < file.size) {
             readNextChunk();
@@ -44,19 +46,26 @@ const Sender = () => {
     };
 
     let onChangeFile = (fileInput) => {
-        file = fileInput;
+        setFile(fileInput)
     }
 
-    let handleStart = () => {
-        spanProgress.innerHTML = '0%'
-        barProgress.style.width = '0%'
-        currentChunk = 0;
-        // send some metadata about our file to the receiver
-        conn.send(JSON.stringify({
-            fileName: file.name,
-            fileSize: file.size
-        }));
-        readNextChunk();
+
+    let handleStart = (file) => {
+        if (file) {
+            spanProgress.innerHTML = '0%'
+            barProgress.style.width = '0%'
+            currentChunk = 0;
+            // send some metadata about our file to the receiver
+            conn.send(JSON.stringify({
+                fileName: file.name,
+                fileSize: file.size
+            }));
+            readNextChunk();
+        }
+    }
+
+    let handleRemoveFile = () => {
+        setFile()
     }
 
 
@@ -72,9 +81,16 @@ const Sender = () => {
                             <FileCopyOutlined />
                         </div>
                     </div>
-
-                    <input type="file" id="input-file-sender" onChange={(e) => onChangeFile(e.target.files[0])} />
-
+                    <label for="input-file-sender" className="select-file-btn"><PublishRounded /> Choose a file...</label>
+                    <input type="file" id="input-file-sender" onChange={(e) => onChangeFile(e.target.files[0])}/>
+                    {
+                        file ?
+                            <div className="file-selected-container">
+                                <span className="file-selected-title">{file.name}</span> 
+                                <span>Size: <strong>{(file.size/1000000).toFixed(2)}MB</strong></span> 
+                                <div className="file-selected-remove-btn" onClick={handleRemoveFile}><Close /></div>
+                            </div> : null
+                    }
                 </div>
                 <div className="vertical-separator"></div>
                 <div className="right-side">
@@ -94,7 +110,7 @@ const Sender = () => {
                 <div className="progress-bar-container">
                     <div className="progress-bar" id="barProgress"></div>
                 </div>
-                <button className="send-btn" id="send-btn" onClick={handleStart}>Send</button>
+                <button className="send-btn" id="send-btn" onClick={e => handleStart(file)}>Send</button>
             </div>
         </div>
     )
