@@ -5,26 +5,12 @@
 
 > Aplicación p2p para transferencia de ficheros entre dos clientes sin la necesidad de un servidor que almacene la información
 
-### 🏠 [Homepage](peerapp.ddns.net)
-
 ### ✨ [Demo](peerapp.ddns.net)
 
 ## Install
 
 ```sh
 sudo docker-compose up
-```
-
-## Usage
-
-```sh
-npm run start
-```
-
-## Run tests
-
-```sh
-npm run test
 ```
 
 ## Author
