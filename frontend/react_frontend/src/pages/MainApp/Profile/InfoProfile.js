@@ -1,4 +1,3 @@
-// import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { Send, People, SupervisorAccount } from '@material-ui/icons';
 import { useState } from "react";
 

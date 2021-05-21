@@ -16,8 +16,6 @@ const SubscriptionsPage = () => {
                 width > 780 ?
                     <h1 className="subscriptions-title">Choose the plan that best suits you</h1> :
                     <h1 className="subscriptions-title">Choose your plan</h1>
-
-
             }
             <div className="subscriptions-wrapper">
                 <article className={"subscription-card " + (width < 1451 ? (currentCard === 1 ? "" : "hide-card"): "")}>

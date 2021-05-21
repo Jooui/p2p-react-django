@@ -1,15 +1,7 @@
 import './EditProfile.css'
-// import { useState } from 'react';
-// import { BlockLoading } from 'react-loadingg';
-
 
 const EditProfile = () => {
-
-    // const [loading, setLoading] = useState(true);
-
-
     return (
-
         <div className="edit-profile-container">
             <div className="inputEditProfile">
                 <label>Email:</label>
@@ -31,9 +23,7 @@ const EditProfile = () => {
                 Save changes
             </button>
         </div>
-
     )
-
 }
 
 export default EditProfile

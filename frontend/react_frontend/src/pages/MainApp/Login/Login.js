@@ -13,17 +13,7 @@ const Login = () => {
   const [section, setSection] = useState('login');
   const [errorMsg, setErrorMsg] = useState('Login error! Try Again')
   const { isAuthenticated, login, register } = useUser();
-
   const [toastr, setToastr] = useState(false);
-
-
-  // let handleOpenToastr = () => () => {
-  //   setToastr(true);
-  // };
-
-  // let handleCloseToastr = () => {
-  //   setToastr(false);
-  // };
 
   if (isAuthenticated) return <Redirect to='/' /> // User cannot enter to login if it's already authenticated
 
@@ -31,8 +21,6 @@ const Login = () => {
     e.preventDefault();
     login({ email, password }).then((res) => {
       if (res === false) {
-        console.log(res);
-        console.log("entra if");
         setToastr(true);
         setErrorMsg('Login error! Try Again')
       }else{
@@ -45,15 +33,12 @@ const Login = () => {
     e.preventDefault();
     register({ username, email, password }).then((res) => {
       if (res === false) {
-        console.log(res);
-        console.log("entra if");
         setToastr(true);
         setErrorMsg('Register error! Try Again')
       }else{
           window.location.reload()
       }
     })
-    // console.log(email, password, "login")
   }
 
   return (
@@ -96,7 +81,6 @@ const Login = () => {
         open={toastr}
         onClose={() => setToastr(false)}
         message={errorMsg}
-        // key={"bottom" + "left"}
       ></Snackbar>
 
     </div >

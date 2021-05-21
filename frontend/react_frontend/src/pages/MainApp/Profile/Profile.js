@@ -17,21 +17,17 @@ const Profile = () => {
 
           <input id="file-input" type="file" />
         </div>
-        {/* <div className="profile-img"></div> */}
         <section className="user-stats">
           <div>
             <span>Total sent:</span>
-            {/* <BackupOutlined/> */}
             <span>870.6GB</span>
           </div>
           <div>
             <span>Biggest File:</span>
-            {/* <BackupOutlined/> */}
             <span>870.6GB</span>
           </div>
           <div>
             <span>Total sent:</span>
-            {/* <BackupOutlined/> */}
             <span>870.6GB</span>
           </div>
         </section>

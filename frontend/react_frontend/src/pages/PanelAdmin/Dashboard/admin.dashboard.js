@@ -7,9 +7,6 @@ import { useLocation } from 'react-router-dom'
 
 const AdminDashboard = () => {
 
-    // const location = useLocation();
-    // console.log(location.pathname);
-
     const data = [
         {
             name: 'Page A',

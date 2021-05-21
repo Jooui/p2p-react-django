@@ -16,14 +16,9 @@ const Header = () => {
           <div className="underline-item"></div>
         </div>
         <div className="header-item">
-          {/* <Link to="/">Pricing</Link> */}
           <a href="#section-subscriptions">Pricing</a>
           <div className="underline-item"></div>
         </div>
-        {/* <div className="header-item">
-          <Link to="/about">About</Link>
-          <div className="underline-item"></div>
-        </div> */}
         <div className="header-item">
           {isAuthenticated && currentUser ?
             currentUser ?

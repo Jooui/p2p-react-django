@@ -1,6 +1,5 @@
 import './UserProfile.css'
 import { useParams } from "react-router-dom";
-// import { Send, People, Archive } from '@material-ui/icons';
 import ProfileService from 'services/profile.service';
 import { useEffect, useState } from 'react';
 import { BlockLoading } from 'react-loadingg';
@@ -10,7 +9,6 @@ import EditProfile from './EditProfile';
 import { ExitToAppRounded, KeyboardBackspace } from '@material-ui/icons';
 import SemipolarLoading from 'react-loadingg/lib/SemipolarLoading';
 import useWindowDimensions from 'hooks/useWindowDimensions';
-// import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 const UserProfile = () => {
     const { currentUser, logout } = useUser();
@@ -43,7 +41,6 @@ const UserProfile = () => {
         }
     }
 
-    // https://imgur.com/T83ezoh.png   -> Profile image
     return (
         <>
             {

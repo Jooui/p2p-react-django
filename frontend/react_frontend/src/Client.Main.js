@@ -28,7 +28,6 @@ import Sender from "pages/MainApp/Transfer/Sender/Sender";
 import Receiver from "pages/MainApp/Transfer/Receiver/Receiver";
 import SubscriptionsPage from "pages/MainApp/Subscriptions/Subscriptions";
 import Chat from "pages/MainApp/Chat/Chat";
-import About from "pages/MainApp/About/About";
 import Login from "pages/MainApp/Login/Login";
 import Profile from "pages/MainApp/Profile/Profile";
 import Friends from "pages/MainApp/Friends/Friends";
@@ -46,15 +45,7 @@ const ClientMain = () => {
     const { showFriends, setShowFriends, notifications, setNotifications, countNotifications } = useContext(GlobalContext)
     let location = useLocation();
     useEffect(() => setShowFriends(false), [location]);
-
-    const chatsModel = [
-        {
-            user: "joel",
-            messages: [
-            ]
-        }
-    ]
-
+    
     useEffect(() => {
         socketIo.on('receiveMsg', function (msg) {
             let path = window.location.pathname.split('/')
@@ -135,7 +126,6 @@ const Routes = () => {
         <Switch>
             <Route exact path="/"><MenuTransfer /></Route>
             <Route path="/admin"><SwitchToPanelAdmin /></Route>
-            <Route path="/about"><About /></Route>
             {
                 width < 1271 ?
                     <Route path="/login"><Login /></Route> :

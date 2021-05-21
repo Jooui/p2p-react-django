@@ -1,9 +1,8 @@
 import './SectionFriends.css';
-import { PublishOutlined, ChatOutlined, FiberManualRecord, ChatBubbleRounded, ChatRounded, Chat, ChatBubbleOutline, AccountCircleRounded } from '@material-ui/icons';
+import { PublishOutlined, FiberManualRecord, ChatRounded, AccountCircleRounded } from '@material-ui/icons';
 import ProfileService from 'services/profile.service';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import useUser from 'hooks/useUser';
 
 const SectionFriends = () => {
   const [friends, setFriends] = useState()
@@ -17,15 +16,6 @@ const SectionFriends = () => {
       setLoading(false)
     })
   }, [])
-
-  // Cada minuto y medio se refrescara la información
-  // setTimeout(() => {
-  //   setInterval(() => {
-  //     ProfileService.getFollowingProfiles().then((data) => {
-  //       setFriends(data)
-  //     })
-  //   }, 120000);
-  // }, 120000);
 
   return (
     <>

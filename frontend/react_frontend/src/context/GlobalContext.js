@@ -15,8 +15,6 @@ export function GlobalContextProvider({ children }) {
         let count = 0
         notifications.map((e) => e.state == 'no_readed' ? count++ : null)
         setCountNotifications(count)
-        // console.log("notifications", notifications);
-        // console.log("entra", countNotifications);
     },[notifications])
 
     return <GlobalContext.Provider value={{ showFriends, setShowFriends, showSidebarAdmin, setShowSidebarAdmin, notifications, setNotifications, countNotifications, receiverConnectionLoaded, setReceiverConnectionLoaded }}>

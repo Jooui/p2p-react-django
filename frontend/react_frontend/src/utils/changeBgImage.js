@@ -9,7 +9,6 @@ let changeBgImage = () => {
       current++;
       current = current % bg.length;
       document.body.style.backgroundImage = `url(${bg[current]})`;
-      // body.css('background-image', bg[current]);
   }
   
   setInterval(nextBackground, 10000);
